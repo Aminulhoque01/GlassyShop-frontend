@@ -8,6 +8,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   background: #f5f0f0;
+  color: rgba(0,0,0,0.7)
 }
 
 .container {
@@ -24,3 +25,9 @@ body {
 .link:hover {
   color: #ff5252;
 }
+
+.muiBadge-badge{background-color:#ff5252 !important}
+nav button{text-transform: capitalize !important; color: rgba(0,0,0,0.7) !important}
+/* nav button:hover{text-transform: capitalize !important; color: #ff5252 !important} */
+
+/* nav ul button:hover .MuTouchRipple-root{background: rgba(0,0,0,0.1) !important;} */
