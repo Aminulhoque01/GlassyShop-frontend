@@ -169,7 +169,7 @@ const Navigation = () => {
                   <Button className="link transition !font-[500]">Bags</Button>
                 </Link>
               </li>
-              <li className="list-none">
+              <li className="list-none relative">
                 <Link
                   to="/footwear"
                   className="link transition text-[14px] font-[500]"
@@ -178,6 +178,29 @@ const Navigation = () => {
                     Footwear
                   </Button>
                 </Link>
+                 <div className="submenu absolute top-[120%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
+                  <ul>
+                    <li className="list-none  w-full">
+                      <Link to="/" className="w-full">
+                        {" "}
+                        <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">
+                          Men footwear
+                        </Button>
+                      </Link>
+                    </li>
+                    <li className="list-none w-full">
+                      <Link to="/" className="w-full">
+                        {" "}
+                        <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">
+                          Women footwear
+                        </Button>{" "}
+                      </Link>
+                    </li>
+                   
+                   
+                     
+                  </ul>
+                </div>
               </li>
               <li className="list-none">
                 <Link

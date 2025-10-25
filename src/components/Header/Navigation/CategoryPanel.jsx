@@ -84,7 +84,6 @@ const CategoryPanel = (props) => {
                     )}
                   </Link>
 
-
                   {innerSubmenuIndex === 0 && (
                     <ul className="submenu  w-full pl-3 mb-1 ">
                       <li className="list-none relative mb-1">
@@ -129,8 +128,6 @@ const CategoryPanel = (props) => {
             )}
           </li>
 
-
-
           <li className="list-none flex justify-center relative flex-col">
             <Link to="/" className="w-full">
               {" "}
@@ -169,7 +166,6 @@ const CategoryPanel = (props) => {
                       />
                     )}
                   </Link>
-
 
                   {innerSubmenuIndex === 1 && (
                     <ul className="submenu  w-full pl-3 mb-1 ">
@@ -214,7 +210,65 @@ const CategoryPanel = (props) => {
               </ul>
             )}
           </li>
+
+          {/* electronics */}
+
+          <li className="list-none flex justify-center relative flex-col">
+            <Link to="/" className="w-full">
+              {" "}
+              <Button className="w-full !text-left !justify-start !py-2 front-bold !text-[rgba(0,0,0,0.8)]">
+                Electronics
+              </Button>
+            </Link>
+            {submenuIndex === 0 ? (
+              <FaRegPlusSquare
+                className="absolute top-[10px] right-[15px] cursor-pointer"
+                onClick={() => openSubmenu(0)}
+              />
+            ) : (
+              <FaRegSquareMinus
+                className="absolute top-[10px] right-[15px] cursor-pointer"
+                onClick={() => openSubmenu(0)}
+              />
+            )}
+
+            {submenuIndex === 0 && (
+              <ul className="inner_submenu  w-full pl-3  ">
+                <li className="list-none relative">
+                  <ul className="submenu  w-full pl-3 mb-1 ">
+                    <li className="list-none relative mb-1">
+                      <Link
+                        to="/"
+                        className="link w-full !text-left !justify-start !py-2 !text-[rgba(0,0,0,0.8)]"
+                      >
+                        Mobiles
+                      </Link>
+                    </li>
+
+                    <li className="list-none relative mb-1">
+                      <Link
+                        to="/"
+                        className="link w-full !text-left !justify-start !py-2 !text-[rgba(0,0,0,0.8)]"
+                      >
+                        Laptops
+                      </Link>
+                    </li>
+
+                    <li className="list-none relative mb-1">
+                      <Link
+                        to="/"
+                        className="link w-full !text-left !justify-start !py-2 !text-[rgba(0,0,0,0.8)]"
+                      >
+                        Smart watch
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            )}
+          </li>
         </ul>
+         
       </div>
     </Box>
   );
