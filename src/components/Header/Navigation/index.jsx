@@ -25,14 +25,35 @@ const Navigation=()=>{
                 </div>
 
                 <div className="col_2 w-[60%]">
-                    <ul className="flex items-center gap-1">
+                    <ul className="flex items-center gap-1 nav">
                         <li className="list-none">
                             <Link to="/" className="link transition text-[14px] font-[500]">
                              <Button className="link transition !font-[500]">Home</Button>
                             </Link>
                         </li>
-                        <li className="list-none">
+                        <li className="list-none relative">
                             <Link to="/fashion" className="link transition text-[14px] font-[500]"><Button className="link transition !font-[500]">Fashion</Button></Link>
+
+                            <div className="submenu absolute top-[120%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
+                                <ul>
+                                    <li className="list-none  w-full">
+                                       <Link to='/' className="w-full"> <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">Men</Button></Link>
+                                    </li>
+                                    <li className="list-none w-full">
+                                        <Link to='/' className="w-full">  <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">Women</Button> </Link>
+                                    </li>
+                                    <li className="list-none  w-full">
+                                         <Link to='/' className="w-full"> <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">Girls</Button></Link>
+                                    </li>
+                                    <li className="list-none  w-full">
+                                         <Link to='/' className="w-full"> <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">kids</Button></Link>
+                                    </li>
+                                    <li className="list-none  w-full">
+                                         <Link to='/' className="w-full"> <Button className="!text-[rgba(0,0,0,0.8)]  w-full !text-left !justify-start !rounded-none">Boys</Button></Link>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </li>
                         <li className="list-none">
                             <Link to="/electronics" className="link transition text-[14px] font-[500]"><Button className="link transition !font-[500]">Electronics</Button></Link>
