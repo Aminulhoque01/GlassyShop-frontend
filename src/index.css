@@ -8,7 +8,8 @@ body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   background: #f5f0f0;
-  color: rgba(0,0,0,0.7)
+  color: rgba(0,0,0,0.7);
+  overflow: hidden;
 }
 
 .container {
@@ -31,3 +32,15 @@ nav ul button{text-transform: capitalize !important; color: rgba(0,0,0,0.7) !imp
 /* nav button:hover{text-transform: capitalize !important; color: #ff5252 !important} */
 
 /* nav ul button:hover .MuTouchRipple-root{background: rgba(0,0,0,0.1) !important;} */
+
+
+.sliderHome{
+    overflow: inherit !important;
+}
+
+
+.swiper-button-prev,.swiper-button-next{display: flex; align-items: center; justify-content: center;
+   background:#fff; border-radius: 100%; width:45px; height:45px; min-width: 45px;   }
+
+   
+.swiper-button-prev:after,.swiper-button-next:after{font-size:10px !important; color:#000;}
