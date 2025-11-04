@@ -12,6 +12,9 @@ body {
   overflow: inherit;
   
 }
+::-webkit-scrollbar{width: 8px !important; height: 8px !important;}
+::-webkit-scrollbar-thumb{background: #ff5252;}
+::-webkit-scrollbar-track{background: white;}
 
 .container {
   width: 95%;

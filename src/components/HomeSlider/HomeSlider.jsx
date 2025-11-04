@@ -2,12 +2,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
 import slider1 from "./../../assets/HomeSlider/slider1.jpg";
 import slider2 from "./../../assets/HomeSlider/slider2.jpg";
 import slider3 from "./../../assets/HomeSlider/slider3.jpg";
 import slider4 from "./../../assets/HomeSlider/slider4.jpg";
- 
 
 const HomeSlider = () => {
   return (
@@ -16,7 +16,11 @@ const HomeSlider = () => {
         <Swiper
           spaceBetween={10}
           navigation={true}
-          modules={[Navigation]}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay, Navigation]}
           className="sliderHome"
         >
           <SwiperSlide>
