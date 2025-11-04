@@ -40,8 +40,19 @@ nav ul button{text-transform: capitalize !important; color: rgba(0,0,0,0.7) !imp
 }
 
 
-.swiper-button-prev,.swiper-button-next{display: flex; align-items: center; justify-content: center;
-   background:#fff; border-radius: 100%; width:45px; height:45px; min-width: 45px;   }
+.swiper-button-prev,.swiper-button-next{display:flex; align-items:
+   center; justify-content: center; background:#fff; border-radius:
+    100%; width:45px; height:45px; min-width: 45px;  
+    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000003a !important;
+   }
+.swiper-navigation-icon,.swiper-navigation-icon{width:10px !important; color:#000;}
 
-   
-.swiper-button-prev:after,.swiper-button-next:after{font-size:10px !important; color:#000;}
+.homeCatSlider{overflow: inherit !important;}
+.homeCatSlider .swiper-button-prev, .homeCatSlider .swiper-button-next{width: 30px; height: 30px; min-width: 30px;}
+.homeCatSlider .swiper-navigation-icon, .homeCatSlider.swiper-navigation-icon {width:10px !important; color:#000;}
+
+.homeCatSlider .swiper-button-prev{left: -10px !important}
+.homeCatSlider .swiper-button-next{right: -10px !important};
+
+.homeCatSlider .swiper-button-prev:hover{background:#ff5252 !important};
+.homeCatSlider .swiper-button-prev:hover::after{color:#fff !important}

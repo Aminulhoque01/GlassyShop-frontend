@@ -10,77 +10,91 @@ import product5 from "../../assets/product/product5.png";
 import product6 from "../../assets/product/product6.png";
 import product7 from "../../assets/product/product7.png";
 import product8 from "../../assets/product/product8.png";
+import { Link } from "react-router-dom";
 
 const HomeCartSlid = () => {
   return (
-    <div className="HomeCatSlider  ">
+    <div className="homeCatSlider  ">
       <div className="container">
         <Swiper
-          slidesPerView={7}
-          spaceBetween={30}
+          slidesPerView={8}
+          spaceBetween={10}
           pagination={{
             clickable: true,
           }}
+           
           modules={[Navigation]}
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product1} alt="product" className="w-full" />
-              <h3>Fashion</h3>
-            </div>
+            <Link to="/fashion">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product1} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Fashion</h3>
+              </div>
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="items bg-white p-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product2} alt="product" className="w-full" />
-              <h3>Electronics</h3>
-            </div>
+            <Link to="/electronics">
+              <div className="items bg-white p-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product2} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Electronics</h3>
+              </div>
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product3} alt="product" className="w-full" />
-              <h3>Bug</h3>
-            </div>
+            <Link to="/bug">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px] ">
+                <img src={product3} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Bug</h3>
+              </div>
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product4} alt="product" className="w-full" />
-              <h3>Footwear</h3>
-            </div>
+            <Link to="/footwear">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product4} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Footwear</h3>
+              </div>
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product5} alt="product" className="w-full" />
-              <h3>Groceries</h3>
-            </div>
+            <Link to="/groceries">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product5} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Groceries</h3>
+              </div>
+            </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product6} alt="product" className="w-full" />
-              <h3>Beauty</h3>
-            </div>
+            <Link to="/beauty">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product6} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Beauty</h3>
+              </div>
+            </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product7} alt="product" className="w-full" />
-              <h3>Wellness</h3>
-            </div>
+            <Link to="/Wellness">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product7} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Wellness</h3>
+              </div>
+            </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col">
-              <img src={product8} alt="product" className="w-full" />
-              <h3>Jewellery</h3>
-            </div>
+            <Link to="/Jewellery">
+              <div className="items bg-white px-3 rounded-sm text-center flex items-center justify-center flex-col w-full h-[200px]">
+                <img src={product8} alt="product" className="w-full" />
+                <h3 className="text-[15px] font-[500] mt-3">Jewellery</h3>
+              </div>
+            </Link>
           </SwiperSlide>
-
-           
         </Swiper>
       </div>
-       
-
     </div>
   );
 };
