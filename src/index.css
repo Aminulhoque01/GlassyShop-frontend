@@ -59,3 +59,7 @@ nav ul button{text-transform: capitalize !important; color: rgba(0,0,0,0.7) !imp
 
 .homeCatSlider .swiper-button-prev:hover{background:#ff5252 !important};
 .homeCatSlider .swiper-button-prev:hover::after{color:#fff !important}
+.MuiTabs-indicator{background-color: #ff5252 !important;}
+.MuiTab-textColorPrimary.Mui-selected{color:#ff5252 !important}
+
+.productsSlider .swiper-wrapper{padding:15px; margin-left:-15px; margin-right:-15px}
