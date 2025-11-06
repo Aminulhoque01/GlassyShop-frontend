@@ -15,7 +15,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="py-2">
+      <nav  >
         <div className="container flex items-center justify-end gap-8">
           <div className="col_1 w-[20%]" onClick={openCategoryPanel}>
             <Button className="!text-black gap-2 w-full">
@@ -29,7 +29,7 @@ const Navigation = () => {
             <ul className="flex items-center gap-1 nav">
               <li className="list-none">
                 <Link to="/" className="link transition text-[14px] font-[500]">
-                  <Button className="link transition !font-[500]">Home</Button>
+                  <Button className="link transition !font-[500] !py-4">Home</Button>
                 </Link>
               </li>
               <li className="list-none relative">
@@ -37,7 +37,7 @@ const Navigation = () => {
                   to="/fashion"
                   className="link transition text-[14px] font-[500]"
                 >
-                  <Button className="link transition !font-[500]">
+                  <Button className="link transition !font-[500] !py-4">
                     Fashion
                   </Button>
                 </Link>
@@ -92,7 +92,7 @@ const Navigation = () => {
                   to="/electronics"
                   className="link transition text-[14px] font-[500]"
                 >
-                  <Button className="link transition !font-[500]">
+                  <Button className="link transition !font-[500] !py-4 ">
                     Electronics
                   </Button>
                 </Link>

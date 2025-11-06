@@ -1,22 +1,24 @@
 import AdsBannerSlider from "../../components/AdsBannerSlider/AdsBannerSlider";
 import HomeCartSlid from "../../components/HomeCartSlid/HomeCartSlid";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
-import ProductCart from "../../components/ProductsSlider/ProductsSlider";
 import { FaShippingFast } from "react-icons/fa";
-
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import { useState } from "react";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import BlogItem from "../../components/BlogItem/BlogItem";
+
 const Home = () => {
-   const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
 
   return (
     <div className=" ">
@@ -34,29 +36,26 @@ const Home = () => {
             </div>
 
             <div className="rightSection w-[60%] ">
-               
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  variant="scrollable"
-                  scrollButtons="auto"
-                  aria-label="scrollable auto tabs example"
-                >
-                  <Tab label="fashion" />
-                  <Tab label="Electronics" />
-                  <Tab label="Bags" />
-                  <Tab label="Footwear" />
-                  <Tab label="Groceries" />
-                  <Tab label="Beauty" />
-                  <Tab label="Wellness" />
-                  <Tab label="jewellery" />
-                </Tabs>
-              
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+              >
+                <Tab label="fashion" />
+                <Tab label="Electronics" />
+                <Tab label="Bags" />
+                <Tab label="Footwear" />
+                <Tab label="Groceries" />
+                <Tab label="Beauty" />
+                <Tab label="Wellness" />
+                <Tab label="jewellery" />
+              </Tabs>
             </div>
           </div>
-          
         </div>
-         <ProductsSlider items={6} />
+        <ProductsSlider items={6} />
       </section>
 
       <div className="py-16 bg-white">
@@ -81,7 +80,39 @@ const Home = () => {
           <AdsBannerSlider items={4} />
         </div>
       </div>
-     
+
+      <section className="py-5 pt-0 bg-white">
+        <div className="container">
+          <h2 className="text-[22px] font-[600] px-5">Latest Products</h2>
+          <ProductsSlider items={6} />
+
+          <AdsBannerSlider items={3} />
+        </div>
+      </section>
+
+      <section className="py-5 pt-0 bg-white">
+        <div className="container">
+          <h2 className="text-[22px] font-[600] px-5">Featured Products</h2>
+          <ProductsSlider items={6} />
+          <AdsBannerSlider items={3} />
+        </div>
+      </section>
+
+      <section className="py-5 pt-0 bg-white blogSection">
+        <div className="py-5 container">
+          <Swiper
+            slidesPerView={5}
+            spaceBetween={10}
+            navigation={true}
+            modules={[Navigation, Pagination]}
+            className="blogSlider"
+          >
+            <SwiperSlide>
+              <BlogItem/>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
     </div>
   );
 };
