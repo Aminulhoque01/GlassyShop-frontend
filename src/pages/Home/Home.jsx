@@ -99,16 +99,27 @@ const Home = () => {
       </section>
 
       <section className="py-5 pt-0 bg-white blogSection">
+       
         <div className="py-5 container">
+           <h2 className="text-[20px] font-[600] mb-4">From The Blog</h2>
           <Swiper
-            slidesPerView={5}
-            spaceBetween={10}
+            slidesPerView={3}
+            spaceBetween={30}
             navigation={true}
             modules={[Navigation, Pagination]}
             className="blogSlider"
           >
             <SwiperSlide>
-              <BlogItem/>
+              <BlogItem items={3}/>
+            </SwiperSlide>
+            <SwiperSlide>
+              <BlogItem items={3}/>
+            </SwiperSlide>
+            <SwiperSlide>
+              <BlogItem items={3}/>
+            </SwiperSlide>
+            <SwiperSlide>
+              <BlogItem items={3}/>
             </SwiperSlide>
           </Swiper>
         </div>
