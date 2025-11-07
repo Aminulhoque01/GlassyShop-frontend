@@ -51,8 +51,8 @@ const Footer = () => {
         <hr />
 
         <div className="footer flex items-center py-8">
-          <div className="part1 w-[25%]">
-            <h2 className="text-[20px] font-[600] mb-4">Contact us</h2>
+          <div className="part1 w-[25%] border-r border-[rgba(0,0,0,0.1)]">
+            <h2 className="text-[18px] font-[600] mb-4">Contact us</h2>
             <p className="text-[14px] font-[400]">
               Classyshop - Mega Super Store <br />
               507-Union Trade Centre France
@@ -76,9 +76,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="part2 w-[40%] flex items-center py-8">
+          <div className="part2 w-[40%] flex items-center py-8 pl-8 border-r border-[rgba(0,0,0,0.1)]">
             <div className="part2_col1 w-[50%]">
-              <h2 className="text-[20px] font-[600] mb-4">Products</h2>
+              <h2 className="text-[18px] font-[600] mb-4">Products</h2>
               
               <ul className="list">
                 <li className="list-none text-[14px] w-full mb-2">
@@ -103,7 +103,7 @@ const Footer = () => {
             </div>
 
             <div className="part2_col2 w-[50%]">
-              <h2 className="text-[20px] font-[600] mb-4">Our company</h2>
+              <h2 className="text-[18px] font-[600] mb-4">Our company</h2>
               
               <ul className="list">
                 <li className="list-none text-[14px] w-full mb-2">
@@ -126,7 +126,18 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+
+            
           </div>
+          <div className="part2_col2 w-[35%] flex pl-8 flex-col">
+              <h2 className="text-[18px] font-[600] mb-4">Subscribe to newsletter</h2>
+              <p className="text-[13px]">Subscribe to our latest newsletter to get news about <br /> special discounts.</p>
+              
+              <form action="" className="mt-5">
+                <input type="text" className="w-full h-[45px] border outline-none px-2" placeholder="Your Email Address"/>
+              </form>
+
+            </div>
         </div>
       </div>
     </footer>
