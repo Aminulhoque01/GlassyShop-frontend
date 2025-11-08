@@ -13,6 +13,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import BlogItem from "../../components/BlogItem/BlogItem";
 import Footer from "../../components/Footer/Footer";
+import HomeSliderV2 from "../../components/HomeSliderV2/HomeSliderV2";
+import BannerBoxV2 from "../../components/BannerBoxV2/BannerBoxV2";
 
 const Home = () => {
   const [value, setValue] = useState(0);
@@ -81,6 +83,26 @@ const Home = () => {
           <AdsBannerSlider items={4} />
         </div>
       </div>
+
+
+      <section className="py-4 bg-white">
+        <div className="container flex   gap-5">
+          <div className="part1 w-[70%]">
+            <HomeSliderV2/>
+
+
+          </div>
+
+          <div className="part2 w-[30%] flex items-center gap-5 justify-between flex-col ">
+            <BannerBoxV2 info="left" image={"https://serviceapi.spicezgold.com/download/1757183705017_1737020250515_New_Project_47.jpg"}/>  
+             
+            <BannerBoxV2 info="right" image={"https://serviceapi.spicezgold.com/download/1760160666204_1737020916820_New_Project_52.jpg"}/>
+
+
+          </div>
+
+        </div>
+      </section>
 
       <section className="py-5 pt-0 bg-white">
         <div className="container">
