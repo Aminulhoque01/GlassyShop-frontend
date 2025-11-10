@@ -15,6 +15,7 @@ import BlogItem from "../../components/BlogItem/BlogItem";
 import Footer from "../../components/Footer/Footer";
 import HomeSliderV2 from "../../components/HomeSliderV2/HomeSliderV2";
 import BannerBoxV2 from "../../components/BannerBoxV2/BannerBoxV2";
+import AdsBannerSliderV2 from "../../components/AdsBannerSliderV2/AdsBannerSlider";
 
 const Home = () => {
   const [value, setValue] = useState(0);
@@ -61,6 +62,30 @@ const Home = () => {
         <ProductsSlider items={6} />
       </section>
 
+      <section className=" bg-white">
+        <div className="container flex   gap-5">
+          <div className="part1 w-[70%]">
+            <HomeSliderV2 />
+          </div>
+
+          <div className="part2 w-[30%] flex items-center gap-5 justify-between flex-col ">
+            <BannerBoxV2
+              info="left"
+              image={
+                "https://serviceapi.spicezgold.com/download/1757183705017_1737020250515_New_Project_47.jpg"
+              }
+            />
+
+            <BannerBoxV2
+              info="right"
+              image={
+                "https://serviceapi.spicezgold.com/download/1760160666204_1737020916820_New_Project_52.jpg"
+              }
+            />
+          </div>
+        </div>
+      </section>
+
       <div className="py-16 bg-white">
         <div className="container">
           <div className="freeShipping w-[80%] m-auto p-4 mb-7 border-2 border-[#ff5252] flex items-center justify-between rounded-md">
@@ -84,32 +109,12 @@ const Home = () => {
         </div>
       </div>
 
-
-      <section className="py-4 bg-white">
-        <div className="container flex   gap-5">
-          <div className="part1 w-[70%]">
-            <HomeSliderV2/>
-
-
-          </div>
-
-          <div className="part2 w-[30%] flex items-center gap-5 justify-between flex-col ">
-            <BannerBoxV2 info="left" image={"https://serviceapi.spicezgold.com/download/1757183705017_1737020250515_New_Project_47.jpg"}/>  
-             
-            <BannerBoxV2 info="right" image={"https://serviceapi.spicezgold.com/download/1760160666204_1737020916820_New_Project_52.jpg"}/>
-
-
-          </div>
-
-        </div>
-      </section>
-
       <section className="py-5 pt-0 bg-white">
         <div className="container">
           <h2 className="text-[22px] font-[600] px-5">Latest Products</h2>
           <ProductsSlider items={6} />
 
-          <AdsBannerSlider items={3} />
+          <AdsBannerSliderV2 items={3} />
         </div>
       </section>
 
@@ -122,9 +127,8 @@ const Home = () => {
       </section>
 
       <section className="py-5 pt-0 bg-white blogSection">
-       
         <div className="py-5 container">
-           <h2 className="text-[20px] font-[600] mb-4">From The Blog</h2>
+          <h2 className="text-[20px] font-[600] mb-4">From The Blog</h2>
           <Swiper
             slidesPerView={3}
             spaceBetween={30}
@@ -133,22 +137,22 @@ const Home = () => {
             className="blogSlider"
           >
             <SwiperSlide>
-              <BlogItem items={3}/>
+              <BlogItem items={3} />
             </SwiperSlide>
             <SwiperSlide>
-              <BlogItem items={3}/>
+              <BlogItem items={3} />
             </SwiperSlide>
             <SwiperSlide>
-              <BlogItem items={3}/>
+              <BlogItem items={3} />
             </SwiperSlide>
             <SwiperSlide>
-              <BlogItem items={3}/>
+              <BlogItem items={3} />
             </SwiperSlide>
           </Swiper>
         </div>
       </section>
 
-        <Footer/>
+      
     </div>
   );
 };
