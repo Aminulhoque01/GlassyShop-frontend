@@ -84,4 +84,5 @@ footer form input::placeholder{font-size:14px}
 .homeSliderV2 .info h3{transition-duration: 3s;}
 .homeSliderV2 .info .btn_{transition-duration: 1.5s;}
 
- 
+.MuiCheckbox-colorPrimary{color:#ff5252 !important};
+
