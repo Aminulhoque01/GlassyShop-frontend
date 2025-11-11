@@ -4,6 +4,9 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import ProductItems from "../../components/ProductItems/ProductItems";
 import Button from "@mui/material/Button";
+import { IoGridSharp } from "react-icons/io5";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 
 const ProductListing = () => {
   return (
@@ -27,8 +30,12 @@ const ProductListing = () => {
 
           <div className="rightContent w-[80%]">
             <div className="bg-[#f1f1f1] p-2 w-full mb-3 rounded-md flex items-center justify-between">
-                <div className="col1 flex items-center gap-3">
-                  <Button></Button>
+                <div className="col1 flex items-center">
+                  <Button className="!w-[40px] !h-[40px] !min-w-[40px] !rounded-full
+                   !text-[#000]"><IoGridSharp className="text-[rgba(0,0,0,0.7)]"/></Button>
+
+                  <Button className="!w-[40px] !h-[40px] !min-w-[40px] !rounded-full
+                   !text-[#000]"><GiHamburgerMenu className="text-[rgba(0,0,0,0.7)]"/></Button>
                 </div>
             </div>
             <div className="grid grid-cols-4 md:grid-cols-4 gap-4">
