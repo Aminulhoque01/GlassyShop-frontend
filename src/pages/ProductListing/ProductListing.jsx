@@ -1,5 +1,5 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Typography from "@mui/material/Typography";
+
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import ProductItems from "../../components/ProductItems/ProductItems";
@@ -12,7 +12,7 @@ import { useState } from "react";
 import ProductItemListView from "../../components/ProductItemListView/ProductItemListView";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import "./style.css"
+
 
 const ProductListing = () => {
   const [itemView, setItemView]=useState("grid")
