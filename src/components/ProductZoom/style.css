@@ -1,1 +1,2 @@
 .zoomProductSliderThumbs .swiper-slide{height:auto !important} 
+.zoomProductSliderThumbs{height:65vh; overflow: hidden;}
