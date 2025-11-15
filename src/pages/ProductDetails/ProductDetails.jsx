@@ -2,8 +2,12 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
 import ProductZoom from "../../components/ProductZoom/ProductZoom";
 import Rating from "@mui/material/Rating";
+import Button from "@mui/material/Button";
+import './style.css'
+import { useState } from "react";
 
 const ProductDetails = () => {
+ const [ productActionIndex, setProductActionIndex]=useState(null)
   return (
     <>
       <div className="py-5 pb-0">
@@ -79,9 +83,21 @@ const ProductDetails = () => {
 
               </div>
                 
-              <p className="text-[14px]  mt-3">
+              <p className="text-[14px]  mt-3 pr-10 mb-5">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
               </p>
+
+              <div className="flex items-center gap-3">
+                <span className="text-[16px]">Size:</span>
+                <div className="flex items-center gap-1 actions">
+                  <Button className={`${productActionIndex === 0 ?'!bg-primary !text-white':''}`} 
+                  onClick={()=>setProductActionIndex(0)}>S</Button>
+                  <Button className={`${productActionIndex === 1 ?'!bg-primary !text-white':''}`}  onClick={()=>setProductActionIndex(1)}>M</Button>
+                  <Button className={`${productActionIndex === 2 ?'!bg-primary !text-white':''}`}  onClick={()=>setProductActionIndex(2)}>L</Button>
+                  <Button className={`${productActionIndex === 3 ?'!bg-primary !text-white':''}`}  onClick={()=>setProductActionIndex(3)}>XL</Button>
+                </div>
+              </div>
+
           </div>
         </div>
       </section>
