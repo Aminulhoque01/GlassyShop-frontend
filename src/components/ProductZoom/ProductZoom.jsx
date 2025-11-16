@@ -132,7 +132,7 @@ const ProductZoom = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="zoomContainer w-[80%]   overflow-hidden">
+        <div className="zoomContainer w-[80%] h-[500px] overflow-hidden  ">
           <Swiper
             ref={zoomSliderBig}
             slidesPerView={1}
@@ -140,17 +140,17 @@ const ProductZoom = () => {
             navigation={false}
           >
             <SwiperSlide>
-              <InnerImageZoom src={shirt} zoomType="hover" zoomScale={1} />
+              <InnerImageZoom src={shirt} zoomType="hover" zoomScale={1} className="rounded-md"  />
             </SwiperSlide>
 
             <SwiperSlide>
-              <InnerImageZoom src={shirt2                                                       } zoomType="hover" zoomScale={1} />
+              <InnerImageZoom src={shirt2 } zoomType="hover" zoomScale={1} className="rounded-md"  />
             </SwiperSlide>
             <SwiperSlide>
-              <InnerImageZoom src={shirt3} zoomType="hover" zoomScale={1} />
+              <InnerImageZoom src={shirt3} zoomType="hover" zoomScale={1} className="rounded-md" />
             </SwiperSlide>
             <SwiperSlide>
-              <InnerImageZoom src={shirt4} zoomType="hover" zoomScale={1} />
+              <InnerImageZoom src={shirt4} zoomType="hover" zoomScale={1} className="rounded-md" />
             </SwiperSlide>
           </Swiper>
         </div>
