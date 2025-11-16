@@ -92,4 +92,9 @@ footer form input::placeholder{font-size:14px}
     !important; }
 
 
-   
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spain-button{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+} 

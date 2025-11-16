@@ -5,6 +5,9 @@ import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import './style.css'
 import { useState } from "react";
+import QtyBox from "../../components/QtyBox/QtyBox";
+import { IoMdCart } from "react-icons/io";
+
 
 const ProductDetails = () => {
  const [ productActionIndex, setProductActionIndex]=useState(null)
@@ -96,6 +99,15 @@ const ProductDetails = () => {
                   <Button className={`${productActionIndex === 2 ?'!bg-primary !text-white':''}`}  onClick={()=>setProductActionIndex(2)}>L</Button>
                   <Button className={`${productActionIndex === 3 ?'!bg-primary !text-white':''}`}  onClick={()=>setProductActionIndex(3)}>XL</Button>
                 </div>
+              </div>
+
+              <p className="text-[14px] mt-4 mb-2">Free Shipping (Est.Delivery Time 2-3)</p>
+              <div className="flex items-center gap-2  ">
+                <div className="qtyBoxWrapper w-[70px]">
+                  <QtyBox/>
+                </div>
+
+                <Button className="btn-org flex gap-2"><IoMdCart className="text-[20px]"/>Ad to Cart</Button>
               </div>
 
           </div>
