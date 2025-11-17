@@ -8,7 +8,7 @@ import { useState } from "react";
 import QtyBox from "../../components/QtyBox/QtyBox";
 import { IoMdCart } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
-import { IoMdGitCompare } from "react-icons/io";
+ 
 import { IoGitCompareSharp } from "react-icons/io5";
 import TextField from "@mui/material/TextField";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
