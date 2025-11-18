@@ -11,7 +11,7 @@ const ProductItems = () => {
   return (
     <div className="productItem shadow-lg rounded-md overflow-hidden border-1 border-[rgba(0,0,0,0.1)]">
       <div className="group imageWrapper w-[100%]  rounded-md relative">
-        <Link to="/">
+        <Link to={`/productDetails/:id`}>
           <div className="img h-[220px] overflow-hidden">
             <img
               src="https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg"
