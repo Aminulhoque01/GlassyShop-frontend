@@ -13,6 +13,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { createContext, useState } from "react";
 import ProductZoom from "./components/ProductZoom/ProductZoom";
+import { IoCloseSharp } from "react-icons/io5";
+
+
 
 const MyContext = createContext();
 
@@ -63,7 +66,8 @@ function App() {
         className="productDetailsModal"
       >
         <DialogContent>
-          <div className="flex items-center w-full productDetailsModalContainer">
+          <div className="flex items-center w-full productDetailsModalContainer relative">
+            <Button onClick={handleCloseProductDetailsModal} className="!absolute top-[0px] right-[0px] !w-[40px] !h-[40px] !min-w-[40px] !rounded-full !text-[#000]"><IoCloseSharp /></Button>
             <div className="col1 w-[50%]">
               <ProductZoom />
             </div>
