@@ -15,6 +15,7 @@ import { createContext, useState } from "react";
 import ProductZoom from "./components/ProductZoom/ProductZoom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProductDetailsComponents from "./components/ProductDetailsComponents/ProductDetailsComponents";
+import Login from "./pages/Login/Login";
 
 
 
@@ -53,6 +54,11 @@ function App() {
               path={"/productDetails/:id"}
               exact={true}
               element={<ProductDetails />}
+            />
+            <Route
+              path={"/Login"}
+              exact={true}
+              element={<Login />}
             />
           </Routes>
           <Footer />
