@@ -8,8 +8,13 @@ import { MdZoomOutMap } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
 import { IoMdCart } from "react-icons/io";
 import "./style.css"
+import { useContext } from "react";
+import { MyContext } from "../../App";
+
+
 
 const ProductItemListView = () => {
+  const context = useContext(MyContext)
   return (
     <div className="productItem shadow-lg rounded-md overflow-hidden border-1
      border-[rgba(0,0,0,0.1)] flex items-center">
@@ -57,7 +62,7 @@ const ProductItemListView = () => {
             </Button>
           </Tooltip>
           <Tooltip title="view details" placement="left-start">
-            <Button
+            <Button onClick={()=>context.setOpenProductDetailsModal(true)}
               className="!w-[35px] !h-[35px] !min-w-[35px] !rounded-full !text-black !bg-white
                      hover:!bg-primary hover:!text-white group"
             >
