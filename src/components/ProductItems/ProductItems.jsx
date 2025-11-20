@@ -6,8 +6,16 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuGitCompareArrows } from "react-icons/lu";
 import { MdZoomOutMap } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
+import { useContext } from "react";
+import { MyContext } from "../../App";
+ 
 
 const ProductItems = () => {
+  
+  const context = useContext(MyContext)
+   
+
+
   return (
     <div className="productItem shadow-lg rounded-md overflow-hidden border-1 border-[rgba(0,0,0,0.1)]">
       <div className="group imageWrapper w-[100%]  rounded-md relative">
@@ -54,7 +62,7 @@ const ProductItems = () => {
             </Button>
           </Tooltip>
           <Tooltip title="view details" placement="left-start">
-            <Button
+            <Button onClick={()=>context.setOpenProductDetailsModal(true)}
               className="!w-[35px] !h-[35px] !min-w-[35px] !rounded-full !text-black !bg-white
                      hover:!bg-primary hover:!text-white group"
             >

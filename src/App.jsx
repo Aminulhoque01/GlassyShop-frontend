@@ -14,15 +14,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { createContext, useState } from "react";
 import ProductZoom from "./components/ProductZoom/ProductZoom";
 import { IoCloseSharp } from "react-icons/io5";
+import ProductDetailsComponents from "./components/ProductDetailsComponents/ProductDetailsComponents";
 
 
 
 const MyContext = createContext();
 
 function App() {
-  const [openProductDetailsModal, setOpenProductDetailsModal] = useState(true);
+  const [openProductDetailsModal, setOpenProductDetailsModal] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
-  const [maxWidth, setMaxWidth] = useState("md");
+  const [maxWidth, setMaxWidth] = useState("lg");
 
   const handleClickOpenProductDetailsModal = () => {
     setOpenProductDetailsModal(true);
@@ -32,7 +33,9 @@ function App() {
     setOpenProductDetailsModal(false);
   };
 
-  const values = {};
+  const values = {
+    setOpenProductDetailsModal
+  };
 
   return (
     <>
@@ -66,10 +69,14 @@ function App() {
         className="productDetailsModal"
       >
         <DialogContent>
-          <div className="flex items-center w-full productDetailsModalContainer relative">
-            <Button onClick={handleCloseProductDetailsModal} className="!absolute top-[0px] right-[0px] !w-[40px] !h-[40px] !min-w-[40px] !rounded-full !text-[#000]"><IoCloseSharp /></Button>
-            <div className="col1 w-[50%]">
+          <div className="flex items-center w-full productDetailsModalContainer relative ">
+            <Button onClick={handleCloseProductDetailsModal} className="!absolute top-[0px] right-[0px] !w-[40px] !h-[40px] !min-w-[40px] !rounded-full !text-[#000] !bg-[#f1f1f1]">
+              <IoCloseSharp className="text-[20px]"/></Button>
+            <div className="col1 w-[40%] py-5">
               <ProductZoom />
+            </div>
+            <div className="col2 w-[60%] py-5 px-8 pr-16 productContent">
+              <ProductDetailsComponents/>
             </div>
           </div>
         </DialogContent>
@@ -79,3 +86,5 @@ function App() {
 }
 
 export default App;
+
+export {MyContext} ;
