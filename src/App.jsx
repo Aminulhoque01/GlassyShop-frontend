@@ -1,24 +1,23 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter,  Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import ProductListing from "./pages/ProductListing/ProductListing";
 import Footer from "./components/Footer/Footer";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
-
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import { createContext, useState } from "react";
 import ProductZoom from "./components/ProductZoom/ProductZoom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProductDetailsComponents from "./components/ProductDetailsComponents/ProductDetailsComponents";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import { IoMdClose } from "react-icons/io";
 
-
+import Drawer from "@mui/material/Drawer";
+import CartPanel from "./components/CartPanel/CartPanel";
+ 
 
 const MyContext = createContext();
 
@@ -26,6 +25,11 @@ function App() {
   const [openProductDetailsModal, setOpenProductDetailsModal] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState("lg");
+
+  const [openCartPanel, setOpenCartPanel] = useState(false);
+  const toggleDrawer = (newOpen) => () => {
+    setOpenCartPanel(newOpen);
+  };
 
   const handleClickOpenProductDetailsModal = () => {
     setOpenProductDetailsModal(true);
@@ -36,7 +40,8 @@ function App() {
   };
 
   const values = {
-    setOpenProductDetailsModal
+    setOpenProductDetailsModal,
+    setOpenCartPanel
   };
 
   return (
@@ -56,16 +61,8 @@ function App() {
               exact={true}
               element={<ProductDetails />}
             />
-            <Route
-              path={"/Login"}
-              exact={true}
-              element={<Login />}
-            />
-            <Route
-              path={"/register"}
-              exact={true}
-              element={<Register />}
-            />
+            <Route path={"/Login"} exact={true} element={<Login />} />
+            <Route path={"/register"} exact={true} element={<Register />} />
           </Routes>
           <Footer />
         </MyContext.Provider>
@@ -82,21 +79,36 @@ function App() {
       >
         <DialogContent>
           <div className="flex items-center w-full productDetailsModalContainer relative ">
-            <Button onClick={handleCloseProductDetailsModal} className="!absolute top-[0px] right-[0px] !w-[40px] !h-[40px] !min-w-[40px] !rounded-full !text-[#000] !bg-[#f1f1f1]">
-              <IoCloseSharp className="text-[20px]"/></Button>
+            <Button
+              onClick={handleCloseProductDetailsModal}
+              className="!absolute top-[0px] right-[0px] !w-[40px] !h-[40px] !min-w-[40px] !rounded-full !text-[#000] !bg-[#f1f1f1]"
+            >
+              <IoCloseSharp className="text-[20px]" />
+            </Button>
             <div className="col1 w-[40%] py-5">
               <ProductZoom />
             </div>
             <div className="col2 w-[60%] py-5 px-8 pr-16 productContent">
-              <ProductDetailsComponents/>
+              <ProductDetailsComponents />
             </div>
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Cart panel */}
+      <Drawer open={openCartPanel} onClose={toggleDrawer(false)} anchor={'right'}
+       className="cartPanel " >
+        <div className="flex items-center  justify-between py-5 px-4 gap-5 border-b border-[rgba(0,0,0,0.1)]">
+           <h4 className="text-[16px] font-[600]">Shopping Cart (1)</h4><IoMdClose  onClick={toggleDrawer(false)} className="text-[20px] cursor-pointer" />
+        </div>
+
+        <CartPanel></CartPanel>
+        
+      </Drawer>
     </>
   );
 }
 
 export default App;
 
-export {MyContext} ;
+export { MyContext };
