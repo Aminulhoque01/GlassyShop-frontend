@@ -16,6 +16,7 @@ import ProductZoom from "./components/ProductZoom/ProductZoom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProductDetailsComponents from "./components/ProductDetailsComponents/ProductDetailsComponents";
 import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 
 
@@ -59,6 +60,11 @@ function App() {
               path={"/Login"}
               exact={true}
               element={<Login />}
+            />
+            <Route
+              path={"/register"}
+              exact={true}
+              element={<Register />}
             />
           </Routes>
           <Footer />
