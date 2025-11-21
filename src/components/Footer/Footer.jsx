@@ -22,8 +22,18 @@ import visa from "../../assets/payment/visa.png"
 import master from "../../assets/payment/master_card.png"
 import american from "../../assets/payment/american_express.png"
 import paypal from "../../assets/payment/paypal.png"
+import { IoMdClose } from "react-icons/io";
+
+import Drawer from "@mui/material/Drawer";
+ 
+import { useContext } from "react";
+import CartPanel from "../CartPanel/CartPanel";
+import { MyContext } from "../../App";
+
 
 const Footer = () => {
+  
+  const context = useContext(MyContext)
   return (
     <>
       <footer className="py-6 bg-[#ffffff]">
@@ -230,6 +240,17 @@ const Footer = () => {
 
           </div>
       </div>
+
+      {/* Cart panel */}
+      <Drawer open={context.openCartPanel} onClose={context.toggleDrawer(false)} anchor={'right'}
+       className="cartPanel " >
+        <div className="flex items-center  justify-between py-5 px-4 gap-5 border-b border-[rgba(0,0,0,0.1)]">
+           <h4 className="text-[16px] font-[600]">Shopping Cart (1)</h4><IoMdClose  onClick={context.toggleDrawer(false)} className="text-[20px] cursor-pointer" />
+        </div>
+
+        <CartPanel></CartPanel>
+        
+      </Drawer>
     </>
 
 
