@@ -13,6 +13,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import ProductDetailsComponents from "./components/ProductDetailsComponents/ProductDetailsComponents";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import CartPage from "./pages/Cart/Cart";
 
  
 
@@ -28,9 +29,7 @@ function App() {
     setOpenCartPanel(newOpen);
   };
 
-  const handleClickOpenProductDetailsModal = () => {
-    setOpenProductDetailsModal(true);
-  };
+ 
 
   const handleCloseProductDetailsModal = () => {
     setOpenProductDetailsModal(false);
@@ -63,6 +62,7 @@ function App() {
             />
             <Route path={"/Login"} exact={true} element={<Login />} />
             <Route path={"/register"} exact={true} element={<Register />} />
+            <Route path={"/cart"} exact={true} element={<CartPage />} />
           </Routes>
           <Footer />
         </MyContext.Provider>
