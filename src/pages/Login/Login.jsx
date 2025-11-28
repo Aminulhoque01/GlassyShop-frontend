@@ -1,14 +1,34 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { MyContext } from "../../App";
 
 
 const Login = () => {
-    const [isShowPassword,setIsShowPassword]=useState(false)
+    const [isShowPassword,setIsShowPassword]=useState(false);
+    const [fromFields, setFromFields]= useState({
+      email:"",
+      password:"",
+    });
+    
+    const context = useContext(MyContext)
+    const history= useNavigate();
+
+    const forgetPassword =()=>{
+      // if(fromFields.email !==""){
+        
+      // }
+      context.openAlertBox("Success", "Otp send")
+      history("/verify");
+       
+      
+    }
+
+
   return (
     <section className="section py-10">
       <div className="container">
@@ -26,6 +46,7 @@ const Login = () => {
                   label="Email id"
                   variant="outlined"
                   className="w-full  "
+                  name="name"
                 />
               </div>
               <div className="form-group w-full mb-5 relative">
@@ -35,8 +56,9 @@ const Login = () => {
                   label="Password"
                   variant="outlined"
                   className="w-full  "
+                  name="password"
                 />
-                <Button onClick={()=>setIsShowPassword(!isShowPassword)} className="!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px]">
+                <Button type="submit" onClick={()=>setIsShowPassword(!isShowPassword)} className="!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px]">
                   {
                     isShowPassword === false ?<IoEyeOutline className="text-[25px] text-black opacity-75" />:
                     <IoEyeOffOutline className="text-[25px] text-black opacity-75" />
@@ -44,7 +66,7 @@ const Login = () => {
                 </Button>
               </div>
 
-              <a href="" className="link cursor-pointer text-[14px] font-[500]">Forget Password ?</a>
+              <a href="" className="link cursor-pointer text-[14px] font-[500]" onClick={()=>forgetPassword()}>Forget Password ?</a>
             </div>
 
             <div className="flex items-center w-full mt-3 mb-3">
