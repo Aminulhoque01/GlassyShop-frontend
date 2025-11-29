@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useState } from "react";
+import { Link,  } from "react-router-dom";
 import { MyContext } from "../../App";
 import {  TextField } from "@mui/material";
 import  Button from "@mui/material/Button";
@@ -13,8 +13,8 @@ const ForgetPassword=()=>{
     const [isShowPassword,setIsShowPassword]=useState(false);
     const [isShowPassword2,setIsShowPassword2]=useState(false);
 
-    const context = useContext(MyContext)
-    const history= useNavigate();
+    // const context = useContext(MyContext)
+    // const history= useNavigate();
 
     return(
         <section className="section py-10">
@@ -26,6 +26,7 @@ const ForgetPassword=()=>{
 
           <form action="" className="w-full">
             <div className="form-group w-full mt-5">
+                
               
               <div className="form-group w-full mb-5 relative">
                 <TextField
