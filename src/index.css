@@ -30,6 +30,7 @@ body {
 .btn-border:hover{background:#000 !important; color:#fff !important;border: 1px solid #080707 !important;}
 
 .btn-lg{font-size:18px !important; padding: 10px,20px !important;}
+.btn-sm{font-size:14px !important; padding: 5px,10px !important;}
 /* .top-strip {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
