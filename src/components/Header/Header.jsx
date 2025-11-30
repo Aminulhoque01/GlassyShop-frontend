@@ -20,7 +20,6 @@ import { IoBagCheckSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
 
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -107,7 +106,10 @@ const Header = () => {
                 </li>
               ) : (
                 <>
-                  <Button className="!text-[#000] myAccountWrapper flex items-center" onClick={handleClick}>
+                  <Button
+                    className="!text-[#000] myAccountWrapper flex items-center"
+                    onClick={handleClick}
+                  >
                     <Button className="!w-[40px] !h-[40px] !min-w-[40px] !rounded-full cursor-pointer  !bg-[#f1f1f1]">
                       <FaRegUserCircle className="text-[20px] !text-black" />
                     </Button>
@@ -159,21 +161,36 @@ const Header = () => {
                     transformOrigin={{ horizontal: "right", vertical: "top" }}
                     anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                   >
-                    <MenuItem onClick={handleClose} className="flex gap-2 !py-2">
-                      <FaRegUserCircle className="text-[18px]"/> <span className="text-[14px]">My Accounts</span>
+                    <Link to="/my-account" className="w-full block">
+                      <MenuItem
+                        onClick={handleClose}
+                        className="flex gap-2 !py-2"
+                      >
+                        <FaRegUserCircle className="text-[18px]" />{" "}
+                        <span className="text-[14px]">My Accounts</span>
+                      </MenuItem>
+                    </Link>
+                    <MenuItem
+                      onClick={handleClose}
+                      className="flex gap-2 !py-2"
+                    >
+                      <IoBagCheckSharp className="text-[18px]" />
+                      <span className="text-[14px]"> Orders</span>
                     </MenuItem>
-                    <MenuItem onClick={handleClose} className="flex gap-2 !py-2">
-                     <IoBagCheckSharp className="text-[18px]"/><span className="text-[14px]"> Orders</span>
+                    <MenuItem
+                      onClick={handleClose}
+                      className="flex gap-2 !py-2"
+                    >
+                      <FaHeart className="text-[18px]" />{" "}
+                      <span className="text-[14px]">My List</span>
                     </MenuItem>
-                    <MenuItem onClick={handleClose} className="flex gap-2 !py-2">
-                      <FaHeart className="text-[18px]"/> <span className="text-[14px]">My List</span>
+                    <MenuItem
+                      onClick={handleClose}
+                      className="flex gap-2 !py-2"
+                    >
+                      <TbLogout2 className="text-[18px]" />{" "}
+                      <span className="text-[14px]">Log Out</span>
                     </MenuItem>
-                    <MenuItem onClick={handleClose} className="flex gap-2 !py-2">
-                      <TbLogout2 className="text-[18px]"/> <span className="text-[14px]">Log Out</span>
-                    </MenuItem>
-                     
-                    
-                     
                   </Menu>
                 </>
               )}
