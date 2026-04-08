@@ -1,7 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
+
 import product1 from "../../assets/product/product1.png";
 import product2 from "../../assets/product/product2.png";
 import product3 from "../../assets/product/product3.png";
@@ -14,80 +16,147 @@ import { Link } from "react-router-dom";
 
 const HomeCartSlid = () => {
   return (
-    <div className="homeCatSlider pt-4 py-8 ">
-      <div className="container">
+    <div className="homeCatSlider pt-4 py-6 md:py-8 bg-[#f8f8f8]">
+      <div className="container px-4">
         <Swiper
-          slidesPerView={5}
-          spaceBetween={10}
+          spaceBetween={15}
           navigation={true}
-          
           modules={[Navigation, Pagination]}
           className="sliderHome"
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+            },
+            480: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 5,
+            },
+            1280: {
+              slidesPerView: 6,
+            },
+          }}
         >
           <SwiperSlide>
             <Link to="/fashion">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col   ">
-                <img src={product1} alt="product"   />
-                <h3 className="text-[15px] font-[500] mt-3">Fashion</h3>
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product1}
+                  alt="Fashion"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Fashion
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
+
           <SwiperSlide>
             <Link to="/electronics">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col  marker:first-line: ">
-                <img src={product2} alt="product"   />
-                <h3 className="text-[15px] font-[500] mt-3">Electronics</h3>
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product2}
+                  alt="Electronics"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Electronics
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
+
           <SwiperSlide>
             <Link to="/bug">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col   ">
-                <img src={product3} alt="product"  />
-                <h3 className="text-[15px] font-[500] mt-3">Bug</h3>
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product3}
+                  alt="Bag"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Bag
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
+
           <SwiperSlide>
             <Link to="/footwear">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col w-full  ">
-                <img src={product4} alt="product"  />
-                <h3 className="text-[15px] font-[500] mt-3">Footwear</h3>
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product4}
+                  alt="Footwear"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Footwear
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
+
           <SwiperSlide>
             <Link to="/groceries">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col w-full  ">
-                <img src={product5} alt="product"  />
-                <h3 className="text-[15px] font-[500] mt-3">Groceries</h3>
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product5}
+                  alt="Groceries"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Groceries
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
 
           <SwiperSlide>
             <Link to="/beauty">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col w-full  ">
-                <img src={product6} alt="product"  />
-                <h3 className="text-[15px] font-[500] mt-3">Beauty</h3>
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product6}
+                  alt="Beauty"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Beauty
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <Link to="/Wellness">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col w-full  ">
-                <img src={product7} alt="product"  />
-                <h3 className="text-[15px] font-[500] mt-3">Wellness</h3>
+            <Link to="/wellness">
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product7}
+                  alt="Wellness"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Wellness
+                </h3>
               </div>
             </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <Link to="/Jewellery">
-              <div className="items bg-white px-2 py-2 rounded-sm text-center flex items-center justify-center flex-col w-full  ">
-                <img src={product8} alt="product"  />
-                <h3 className="text-[15px] font-[500] mt-3">Jewellery</h3>
+            <Link to="/jewellery">
+              <div className="items bg-white px-3 py-4 rounded-lg text-center flex items-center justify-center flex-col shadow-sm hover:shadow-md transition-all duration-300">
+                <img
+                  src={product8}
+                  alt="Jewellery"
+                  className="w-[55px] sm:w-[65px] md:w-[75px] object-contain"
+                />
+                <h3 className="text-[13px] sm:text-[14px] md:text-[15px] font-[500] mt-3">
+                  Jewellery
+                </h3>
               </div>
             </Link>
           </SwiperSlide>

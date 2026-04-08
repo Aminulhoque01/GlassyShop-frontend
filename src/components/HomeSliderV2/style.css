@@ -1,0 +1,38 @@
+.homeSliderV2 .slide-subtitle,
+.homeSliderV2 .slide-title,
+.homeSliderV2 .slide-price,
+.homeSliderV2 .slide-btn {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 0.8s ease;
+}
+
+/* active slide animation */
+.homeSliderV2 .swiper-slide-active .slide-subtitle {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
+
+.homeSliderV2 .swiper-slide-active .slide-title {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.6s;
+}
+
+.homeSliderV2 .swiper-slide-active .slide-price {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.9s;
+}
+
+.homeSliderV2 .swiper-slide-active .slide-btn {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.2s;
+}
+
+/* button bottom animation */
+.homeSliderV2 .slide-btn {
+  transform: translateY(40px);
+}
