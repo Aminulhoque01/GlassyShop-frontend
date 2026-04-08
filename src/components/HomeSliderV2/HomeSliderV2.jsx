@@ -10,6 +10,9 @@ import "swiper/css/pagination";
 
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import Button from "@mui/material/Button";
+import sliver4 from "../../assets/banner/banner5.webp"
+import sliver3 from "../../assets/banner/banner6.webp"
+ 
 
 const HomeSliderV2 = () => {
   return (
@@ -31,7 +34,7 @@ const HomeSliderV2 = () => {
       >
         <SwiperSlide>
           <div className="item w-full rounded-md overflow-hidden relative">
-            <img src="https://serviceapi.spicezgold.com/download/1742441193376_1737037654953_New_Project_45.jpg" />
+            <img src={sliver4}/>
 
             <div
               className="info absolute top-0 -right-[100%] opacity-0 w-[50%] h-[100%] 
@@ -59,7 +62,7 @@ const HomeSliderV2 = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="item w-full rounded-md overflow-hidden">
-            <img src="https://serviceapi.spicezgold.com/download/1756273096312_1737036773579_sample-1.jpg" />
+            <img src={sliver3} />
 
             <div
               className="info absolute top-0 -right-[100%] opacity-0 w-[50%] h-[100%] 

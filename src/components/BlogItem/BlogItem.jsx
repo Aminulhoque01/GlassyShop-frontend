@@ -1,13 +1,13 @@
 import { IoMdTime } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
-
+import shirt from "../../assets/banner/banner1.png"
 import { Link } from "react-router-dom";
 
 const BlogItem=()=>{
     return(
         <div className="blogItem group  ">
             <div className="imageWrapper w-full overflow-hidden rounded-md cursor-pointer relative">
-                <img src="https://serviceapi.spicezgold.com/download/1741758993155_6-4.jpg" 
+                <img src={shirt} 
                 alt="blog" className="w-full transition-all group-hover:scale-105 group-hover:rotate-1 " />
 
                <span className="flex items-center justify-center text-white absolute bottom-[15px] 
