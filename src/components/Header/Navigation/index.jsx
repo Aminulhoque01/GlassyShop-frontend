@@ -334,7 +334,7 @@ const Navigation = () => {
           </div>
 
           {/* Delivery Text */}
-          <div className="  flex items-center gap-2 text-sm font-medium text-gray-700 whitespace-nowrap shrink-0 min-w-fit">
+          <div className="flex items-center gap-2 text-sm font-medium text-gray-700 whitespace-nowrap shrink-0 min-w-fit">
             <MdOutlineRocketLaunch className="text-[18px] shrink-0" />
             <span>Free International delivery</span>
           </div>
