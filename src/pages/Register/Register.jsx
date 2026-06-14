@@ -9,6 +9,28 @@ import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
     const [isShowPassword,setIsShowPassword]=useState(false)
+    const [formFields, setFormFields]=useState({
+      name:"",
+      email:"",
+      password:""
+    })
+
+    const onChangeInput=(e)=>{
+      const {name, value}=e.target;
+      setFormFields(()=>{
+        return{
+          ...formFields,
+           [name]:value
+        }
+      })
+    }
+
+    console.log(formFields)
+
+    const handelSubmit = ()=>{
+
+    }
+
   return (
     <section className="section py-10">
       <div className="container">
@@ -17,24 +39,28 @@ const Register = () => {
             Register with new a account
           </h1>
 
-          <form action="" className="w-full">
+          <form action="" className="w-full" onSubmit={handelSubmit}>
             <div className="form-group w-full mt-5">
               <div className="form-group w-full mb-5 ">
                 <TextField
                   type="Full-Name"
                   id="fullName"
+                  name="name"
                   label="fullName"
                   variant="outlined"
                   className="w-full  "
+                  onChange={onChangeInput}
                 />
               </div>
               <div className="form-group w-full mb-5 ">
                 <TextField
                   type="email"
                   id="Email"
+                  name="email"
                   label="Email id"
                   variant="outlined"
                   className="w-full  "
+                  onChange={onChangeInput}
                 />
               </div>
               <div className="form-group w-full mb-5 relative">
@@ -42,8 +68,10 @@ const Register = () => {
                   type={isShowPassword===false ? "password":"text"}
                   id="Password"
                   label="Password"
+                  name="password"
                   variant="outlined"
                   className="w-full  "
+                  onChange={onChangeInput}
                 />
                 <Button onClick={()=>setIsShowPassword(!isShowPassword)} className="!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px]">
                   {
