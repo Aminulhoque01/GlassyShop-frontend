@@ -1,10 +1,12 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { MyContext } from "../../App";
+import { postData } from "../../utils/api";
 
 
 const Register = () => {
@@ -15,6 +17,8 @@ const Register = () => {
       password:""
     })
 
+    const context = useContext(MyContext)
+    
     const onChangeInput=(e)=>{
       const {name, value}=e.target;
       setFormFields(()=>{
@@ -25,10 +29,21 @@ const Register = () => {
       })
     }
 
-    console.log(formFields)
+     
 
-    const handelSubmit = ()=>{
+    const handelSubmit = (e)=>{
+     e.preventDefault()
 
+     if(formFields.name===""){
+      context.openAlertBox({
+        type:"error",
+        msg:"Please add full name"
+      })
+     }
+
+     postData("/api/register", formFields).then((res)=>{
+      console.log(res)
+     })
     }
 
   return (
@@ -73,7 +88,7 @@ const Register = () => {
                   className="w-full  "
                   onChange={onChangeInput}
                 />
-                <Button onClick={()=>setIsShowPassword(!isShowPassword)} className="!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px]">
+                <Button  onClick={()=>setIsShowPassword(!isShowPassword)} className="!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px]">
                   {
                     isShowPassword === false ?<IoEyeOutline className="text-[25px] text-black opacity-75" />:
                     <IoEyeOffOutline className="text-[25px] text-black opacity-75" />
@@ -85,7 +100,7 @@ const Register = () => {
             </div>
 
             <div className="flex items-center w-full mt-3 mb-3">
-                <Button className="btn-org btn-lg w-full">Register</Button>
+                <Button type="submit" className="btn-org btn-lg w-full">Register</Button>
 
             </div>
 

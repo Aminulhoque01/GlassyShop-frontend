@@ -31,7 +31,7 @@ function App() {
   const [maxWidth, setMaxWidth] = useState("lg");
   const [openCartPanel, setOpenCartPanel] = useState(false);
   const[isLogin, setIsLogin]=useState(true)
-
+  const apiUrl= import.meta.env.VITE_API_URL;
 
   const toggleDrawer = (newOpen) => () => {
     setOpenCartPanel(newOpen);

@@ -1,18 +1,18 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import axios from "axios";
-
+const apiUrl= import.meta.env.VITE_API_URL;
 
 export const postData= async(url, formData)=>{
  try {
-    const response= await fetch(process.env.REACT_APP_API_URL + url,{
+    const response= await fetch(apiUrl + url,{
         method:"POST",
         headers:{
-            'Authorization':`Bearer ${token}`,
+            'Authorization':`Bearer ${localStorage.getItme("token")}`,
             'Content-Type':'application/json'
         },
         body:JSON.stringify(formData)
-    })
+    });
  } catch (error) {
     console.log(error)
  }
