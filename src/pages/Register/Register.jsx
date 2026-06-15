@@ -35,13 +35,17 @@ const Register = () => {
      e.preventDefault()
 
      if(formFields.name===""){
-      context.openAlertBox({
-        type:"error",
-        msg:"Please add full name"
-      })
+      context.openAlertBox("error", "Please enter Full Name")
      }
 
-     postData("/api/register", formFields).then((res)=>{
+     if(formFields.email===""){
+      context.openAlertBox("error", "Please enter Email")
+     }
+     if(formFields.password===""){
+      context.openAlertBox("error", "Please enter Password")
+     }
+
+     postData("/api/user/register", formFields).then((res)=>{
       console.log(res)
      })
     }
