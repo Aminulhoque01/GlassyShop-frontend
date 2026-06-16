@@ -13,6 +13,16 @@ export const postData= async(url, formData)=>{
         },
         body:JSON.stringify(formData)
     });
+
+    if(response.ok){
+        const data= await response.json();
+        // console.log(data)
+        return data
+    }else{
+        const errorData = await response.json();
+        return errorData;
+    }
+    
  } catch (error) {
     console.log(error)
  }

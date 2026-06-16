@@ -10,6 +10,7 @@ import { postData } from "../../utils/api";
 
 
 const Register = () => {
+    const [isLoading, setIsLoading]= useState(false);
     const [isShowPassword,setIsShowPassword]=useState(false)
     const [formFields, setFormFields]=useState({
       name:"",
@@ -104,7 +105,7 @@ const Register = () => {
             </div>
 
             <div className="flex items-center w-full mt-3 mb-3">
-                <Button type="submit" className="btn-org btn-lg w-full">Register</Button>
+                <Button type="submit" disabled={isLoading===true ? true:false} className="btn-org btn-lg w-full">Register</Button>
 
             </div>
 
