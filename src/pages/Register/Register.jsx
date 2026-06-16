@@ -36,7 +36,7 @@ const Register = () => {
       })
     }
 
-     const validValue=Object.values(formFields).every(el=>el)
+    const validValue=Object.values(formFields).every(el=>el)
 
     const handelSubmit = async (e) => {
       e.preventDefault();

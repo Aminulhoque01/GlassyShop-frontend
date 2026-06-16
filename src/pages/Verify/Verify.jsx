@@ -32,36 +32,38 @@ const Verify=()=> {
   const history = useNavigate()
 
   const handleSubmit = async () => {
-    try {
-      const finalOtp = otp.join("");
+  try {
+    const finalOtp = otp.join("");
 
-      const res = await postData("/api/user/verify", {
-        email: localStorage.getItem("userEmail"),
-        otp: finalOtp,
-      }).then((res)=>{
-        if(res?.error===false){
-          toast.success(res?.message)
-           localStorage.removeItem("userEmail")
-        }
-      });
+    const res = await postData("/api/user/verify", {
+      email: localStorage.getItem("userEmail"),
+      otp: finalOtp,
+    });
 
-      if (res.success) {
-        toast.success(res.message || "Email verified successfully");
-      } else {
-        toast.error(res.message || "Verification failed");
-      }
-      history("/login")
-      console.log(res);
-    } catch (error) {
-      console.error(error);
-      toast.error(
-        error?.response?.data?.message ||
-        error?.message ||
-        "Something went wrong"
-      );
+    if (res?.success) {
+      toast.success(res?.message || "Email verified successfully");
+
+      // localStorage থেকে email remove
+      localStorage.removeItem("userEmail");
+
+      setTimeout(() => {
+        history("/login");
+      }, 1500);
+    } else {
+      toast.error(res?.message || "Verification failed");
     }
-  };
 
+    console.log(res);
+  } catch (error) {
+    console.error(error);
+
+    toast.error(
+      error?.response?.data?.message ||
+      error?.message ||
+      "Something went wrong"
+    );
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm text-center">
