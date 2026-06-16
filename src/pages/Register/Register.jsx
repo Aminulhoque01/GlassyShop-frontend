@@ -1,13 +1,18 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { MyContext } from "../../App";
 import { postData } from "../../utils/api";
+import "../../index.css"
 
+import CircularProgress from '@mui/material/CircularProgress';
+import toast from "react-hot-toast";
 
 const Register = () => {
     const [isLoading, setIsLoading]= useState(false);
@@ -19,7 +24,8 @@ const Register = () => {
     })
 
     const context = useContext(MyContext)
-    
+    const history = useNavigate()
+
     const onChangeInput=(e)=>{
       const {name, value}=e.target;
       setFormFields(()=>{
@@ -30,26 +36,65 @@ const Register = () => {
       })
     }
 
-     
+     const validValue=Object.values(formFields).every(el=>el)
 
-    const handelSubmit = (e)=>{
-     e.preventDefault()
+    const handelSubmit = async (e) => {
+      e.preventDefault();
 
-     if(formFields.name===""){
-      context.openAlertBox("error", "Please enter Full Name")
-     }
+      try {
+        setIsLoading(true);
 
-     if(formFields.email===""){
-      context.openAlertBox("error", "Please enter Email")
-     }
-     if(formFields.password===""){
-      context.openAlertBox("error", "Please enter Password")
-     }
+        if (formFields.name === "") {
+          context.openAlertBox("error", "Please enter Full Name");
+          setIsLoading(false);
+          return;
+        }
 
-     postData("/api/user/register", formFields).then((res)=>{
-      console.log(res)
-     })
-    }
+        if (formFields.email === "") {
+          context.openAlertBox("error", "Please enter Email");
+          setIsLoading(false);
+          return;
+        }
+
+        if (formFields.password === "") {
+          context.openAlertBox("error", "Please enter Password");
+          setIsLoading(false);
+          return;
+        }
+
+        const res = await postData("/api/user/register", formFields);
+
+        if (res?.success) {
+          toast.success(
+            res?.message || "Registration successful"
+          );
+
+          localStorage.setItem("userEmail", formFields.email);
+
+          setFormFields({
+            name: "",
+            email: "",
+            password: "",
+          });
+
+          history("/verify");
+        } else {
+          toast.error(
+             
+            res?.message || "Registration failed"
+          );
+        }
+      } catch (error) {
+        toast.error(
+          
+          
+          error?.message ||
+          "Something went wrong"
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
   return (
     <section className="section py-10">
@@ -66,6 +111,8 @@ const Register = () => {
                   type="Full-Name"
                   id="fullName"
                   name="name"
+                  value={formFields.name}
+                  disabled={isLoading===true ? true:false}
                   label="fullName"
                   variant="outlined"
                   className="w-full  "
@@ -77,6 +124,8 @@ const Register = () => {
                   type="email"
                   id="Email"
                   name="email"
+                  value={formFields.email}
+                  disabled={isLoading===true ? true:false}
                   label="Email id"
                   variant="outlined"
                   className="w-full  "
@@ -89,6 +138,8 @@ const Register = () => {
                   id="Password"
                   label="Password"
                   name="password"
+                  value={formFields.password}
+                  disabled={isLoading===true ? true:false}
                   variant="outlined"
                   className="w-full  "
                   onChange={onChangeInput}
@@ -105,7 +156,13 @@ const Register = () => {
             </div>
 
             <div className="flex items-center w-full mt-3 mb-3">
-                <Button type="submit" disabled={isLoading===true ? true:false} className="btn-org btn-lg w-full">Register</Button>
+                <Button type="submit" disabled={!validValue} className="btn-org btn-lg w-full flex gap-2">
+                   {
+                    isLoading===true? <CircularProgress color="inherit" />
+                    :"Register"
+                   }
+                   
+                </Button>
 
             </div>
 
