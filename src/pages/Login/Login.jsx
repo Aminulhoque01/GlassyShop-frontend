@@ -62,15 +62,17 @@ const Login = () => {
         toast.success(res?.message || "login successful");
 
        
-
-        // Optional: save user info
-        localStorage.setItem("userEmail", formFields.email);
+ 
+        localStorage.setItem("accessToken", res?.data?.accessToken);
+        localStorage.setItem("refreshToken", res?.data?.refreshToken);
 
         setFormFields({
           
           email: "",
           password: "",
         });
+
+        context.setIsLogin(true)
 
         history("/");
       } else {

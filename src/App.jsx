@@ -7,7 +7,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import ProductZoom from "./components/ProductZoom/ProductZoom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProductDetailsComponents from "./components/ProductDetailsComponents/ProductDetailsComponents";
@@ -32,6 +32,17 @@ function App() {
   const [openCartPanel, setOpenCartPanel] = useState(false);
   const[isLogin, setIsLogin]=useState(false)
   const apiUrl= import.meta.env.VITE_API_URL;
+
+
+  useEffect(()=>{
+    const token = localStorage.getItem("accessToken");
+
+    if(token !==undefined && token !==null && token !==""){
+      setIsLogin(true)
+    }else{
+      setIsLogin(false)
+    }
+  },[])
 
   const toggleDrawer = (newOpen) => () => {
     setOpenCartPanel(newOpen);

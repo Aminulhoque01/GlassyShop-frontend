@@ -244,6 +244,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { IoBagCheckSharp } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import Navigation from "./Navigation";
+import { fetchDataFromApi } from "../../utils/api";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -267,6 +268,15 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logout = ()=>{
+    setAnchorEl(null);
+
+    fetchDataFromApi("/api/user/logout").then((res)=>{
+      console.log(res);
+      context.setIsLogin(false)
+    })
+  }
 
   return (
     <header className="bg-white sticky top-0 z-[1000] shadow-sm">
@@ -393,7 +403,7 @@ const Header = () => {
                         </MenuItem>
                       </Link>
 
-                      <MenuItem>
+                      <MenuItem onClick={logout}>
                         <TbLogout2 className="mr-2" />
                         Log Out
                       </MenuItem>
