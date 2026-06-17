@@ -42,7 +42,7 @@ function App() {
     }else{
       setIsLogin(false)
     }
-  },[])
+  },[isLogin])
 
   const toggleDrawer = (newOpen) => () => {
     setOpenCartPanel(newOpen);
