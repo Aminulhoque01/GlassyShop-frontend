@@ -58,6 +58,8 @@ const Header = () => {
     })
   }
 
+   
+
   return (
     <header className="bg-white sticky top-0 z-[1000] shadow-sm">
       {/* Top Strip */}
@@ -136,15 +138,16 @@ const Header = () => {
                       onClick={handleClick}
                     >
                       <div className="w-[42px] h-[42px] rounded-full bg-gray-100 flex items-center justify-center">
-                        <FaRegUserCircle className="text-[22px]" />
+                        {/* <FaRegUserCircle className="text-[22px]" /> */}
+                        <img src={context.userData?.data?.avatar} alt="" className="rounded-full"/>
                       </div>
 
                       <div className="hidden xl:flex flex-col ml-3 text-left">
                         <h4 className="text-[14px] font-semibold text-gray-700 capitalize">
-                          Aminul Haque
+                          {context.userData?.data?.name}
                         </h4>
                         <span className="text-[12px] text-gray-500">
-                          aminulhaque@gmail.com
+                          {context.userData?.data?.email}
                         </span>
                       </div>
                     </Button>

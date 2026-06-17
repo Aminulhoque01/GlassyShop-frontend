@@ -22,6 +22,7 @@ import Checkout from "./pages/Checkout/Checkout";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import MyList from "./pages/MyList/MyList";
 import Orders from "./pages/Orders/Orders";
+import { fetchDataFromApi } from "./utils/api";
 
 const MyContext = createContext();
 
@@ -31,6 +32,8 @@ function App() {
   const [maxWidth, setMaxWidth] = useState("lg");
   const [openCartPanel, setOpenCartPanel] = useState(false);
   const[isLogin, setIsLogin]=useState(false)
+  const[userData, setUserData]=useState(false);
+
   const apiUrl= import.meta.env.VITE_API_URL;
 
 
@@ -39,6 +42,11 @@ function App() {
 
     if(token !==undefined && token !==null && token !==""){
       setIsLogin(true)
+
+      fetchDataFromApi(`/api/user/user-details?token=${localStorage.getItem('accessToken')}`,{withCredentials:true}).then((res)=>{
+         console.log(res)
+        setUserData(res)
+      })
     }else{
       setIsLogin(false)
     }
@@ -73,7 +81,8 @@ function App() {
     openCartPanel,
     openAlertBox,
     isLogin,
-    setIsLogin
+    setIsLogin,
+    userData
     
   };
 
