@@ -41,6 +41,8 @@ export const fetchDataFromApi= async(url)=>{
             'Content-Type':'application/json'
         },
         })
+
+        return data;
     } catch (error) {
         console.log(error);
         return error

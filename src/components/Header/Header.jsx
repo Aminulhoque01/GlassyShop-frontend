@@ -272,9 +272,14 @@ const Header = () => {
   const logout = ()=>{
     setAnchorEl(null);
 
-    fetchDataFromApi("/api/user/logout").then((res)=>{
+    fetchDataFromApi(`/api/user/logout?token=${localStorage.getItem('accessToken')}`, {withCredentials:true}).then((res)=>{
       console.log(res);
-      context.setIsLogin(false)
+      if(res.error===false){
+         context.setIsLogin(false);
+          localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+      }
+      
     })
   }
 

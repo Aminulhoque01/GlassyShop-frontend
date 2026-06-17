@@ -55,7 +55,7 @@ const Login = () => {
         return;
       }
 
-      const res = await postData("/api/user/login", formFields);
+      const res = await postData("/api/user/login", formFields,{withCredentials:true});
       console.log(res)
 
       if (res?.success) {
