@@ -107,7 +107,7 @@ function App() {
             <Route path={"/register"} exact={true} element={<Register />} />
             <Route path={"/cart"} exact={true} element={<CartPage />} />
             <Route path={"/verify"} exact={true} element={<Verify />} />
-            <Route path={"/forget-password"} exact={true} element={<ForgetPassword />} />
+            <Route path={"/forgot-password"} exact={true} element={<ForgetPassword />} />
             <Route path={"/checkout"} exact={true} element={<Checkout />} />
             <Route path={"/my-account"} exact={true} element={<MyAccount />} />
             <Route path={"/my-list"} exact={true} element={<MyList />} />
