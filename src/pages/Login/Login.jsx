@@ -86,11 +86,16 @@ const Login = () => {
   };
 
   const forgetPassword = () => {
-    // if(fromFields.email !==""){
-
-    // }
-    context.openAlertBox("Success", "Otp send");
+ 
+    if(formFields.email ===""){
+      context.openAlertBox("error","Please enter your email id");
+       return false
+    }else{
+      localStorage.getItem("userEmail",formFields.email);
+       toast.success("Success", "Otp send");
     history("/verify");
+    }
+   
   };
 
   return (
@@ -144,7 +149,7 @@ const Login = () => {
               </div>
 
               <a
-                href=""
+                 
                 className="link cursor-pointer text-[14px] font-[500]"
                 onClick={() => forgetPassword()}
               >
