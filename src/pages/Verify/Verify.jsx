@@ -1,14 +1,14 @@
-
-import { useState, useRef,  } from "react";
+import { useState, useRef, useContext } from "react";
 import toast from "react-hot-toast";
 import { postData } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../App";
 
-const Verify=()=> {
+const Verify = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputRefs = useRef([]);
 
-  
+  const context = useContext(MyContext);
 
   const handleChange = (value, index) => {
     if (/^[0-9]?$/.test(value)) {
@@ -29,46 +29,71 @@ const Verify=()=> {
     }
   };
 
-  const history = useNavigate()
+  const history = useNavigate();
 
   const handleSubmit = async () => {
-  try {
-    const finalOtp = otp.join("");
+    try {
+      const finalOtp = otp.join("");
 
-    const res = await postData("/api/user/verify", {
-      email: localStorage.getItem("userEmail"),
-      otp: finalOtp,
-    });
+      const actionType = localStorage.getItem("actionType");
 
-    if (res?.success) {
-      toast.success(res?.message || "Email verified successfully");
+      if (actionType !== "forgot-password") {
+        const res = await postData("/api/user/verify", {
+          email: localStorage.getItem("userEmail"),
+          otp: finalOtp,
+        });
 
-      // localStorage থেকে email remove
-      localStorage.removeItem("userEmail");
+        if (res?.success) {
+          toast.success(res?.message || "Email verified successfully");
 
-      setTimeout(() => {
-        history("/login");
-      }, 1500);
-    } else {
-      toast.error(res?.message || "Verification failed");
+          localStorage.removeItem("userEmail");
+
+          setTimeout(() => {
+            history("/login");
+          }, 1500);
+        } else {
+          toast.error(res?.message || "Verification failed");
+        }
+      } else {
+        const res = await postData("/api/user/verify-forgot-password", {
+          email: localStorage.getItem("userEmail"),
+          otp: finalOtp,
+        });
+
+        console.log(res);
+
+        if (res?.success === true) {
+          context.openAlertBox("success", res?.message);
+
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("actionType");
+
+          history("/forgot-password");
+        } else {
+          context.openAlertBox("error", res?.message);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong",
+      );
     }
+  };
 
-    console.log(res);
-  } catch (error) {
-    console.error(error);
-
-    toast.error(
-      error?.response?.data?.message ||
-      error?.message ||
-      "Something went wrong"
-    );
-  }
-};
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm text-center">
         <h2 className="text-2xl font-bold mb-4">Verify OTP</h2>
-        <p className="text-gray-600 mb-6">Enter the 6-digit code sent to you: <span className="text-red-500">{localStorage.getItem("userEmail")}</span></p>
+        <p className="text-gray-600 mb-6">
+          Enter the 6-digit code sent to you:{" "}
+          <span className="text-red-500">
+            {localStorage.getItem("userEmail")}
+          </span>
+        </p>
 
         <div className="flex justify-between mb-6">
           {otp.map((value, index) => (
@@ -94,7 +119,6 @@ const Verify=()=> {
       </div>
     </div>
   );
-}
-
+};
 
 export default Verify;

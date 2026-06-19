@@ -12,7 +12,11 @@ const ForgetPassword=()=>{
 
     const [isShowPassword,setIsShowPassword]=useState(false);
     const [isShowPassword2,setIsShowPassword2]=useState(false);
-
+      const [formFields, setFormFields] = useState({
+        email: "",
+        password: "",
+      });
+    
     // const context = useContext(MyContext)
     // const history= useNavigate();
 

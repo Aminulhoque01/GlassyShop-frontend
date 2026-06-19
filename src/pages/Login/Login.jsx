@@ -91,15 +91,15 @@ const Login = () => {
       context.openAlertBox("error","Please enter your email id");
        return false
     }else{
-      localStorage.setItem("userEmail",formFields.email);
-      localStorage.setItem("actionType",'formFields.email');
+     localStorage.setItem("userEmail", formFields.email);
+     localStorage.setItem("actionType", "forgot-password");
 
       postData("/api/user/forgot-password",{
         email: formFields.email,
       }).then((res)=>{
         if(res?.error==false){
           context.openAlertBox("success", res?.message);
-          localStorage.removeItem("userEmail");
+          
           toast.success("Success", "Otp send");
           history("/verify");
         }else{
