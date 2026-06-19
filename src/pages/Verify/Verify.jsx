@@ -65,8 +65,7 @@ const Verify = () => {
         if (res?.success === true) {
           context.openAlertBox("success", res?.message);
 
-          localStorage.removeItem("userEmail");
-          localStorage.removeItem("actionType");
+         
 
           history("/forgot-password");
         } else {
