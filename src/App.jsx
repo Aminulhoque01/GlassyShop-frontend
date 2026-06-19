@@ -43,7 +43,7 @@ function App() {
     if(token !==undefined && token !==null && token !==""){
       setIsLogin(true)
 
-      fetchDataFromApi(`/api/user/user-details?token=${localStorage.getItem('accessToken')}`,{withCredentials:true}).then((res)=>{
+      fetchDataFromApi(`/api/user/user-details`).then((res)=>{
          console.log(res)
         setUserData(res)
       })

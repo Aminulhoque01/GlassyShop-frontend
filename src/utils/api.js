@@ -32,12 +32,15 @@ export const postData = async (url, formData) => {
 
 export const fetchDataFromApi = async (url) => {
   try {
-    const { data } = await axios.get(apiUrl + url, {
-       
-        'Authorization': `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-       
-    });
+    const params={
+        headers:{
+          'Authorization':`Bearer ${localStorage.getItem('accessToken')}`,
+          'content-type':`application/json`,
+        }
+    }
+
+
+    const { data } = await axios.get(apiUrl + url,params);
      
     return data;
     
