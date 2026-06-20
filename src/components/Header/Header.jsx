@@ -2,7 +2,7 @@
 
 
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Search from "../Search/Search";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
@@ -35,6 +35,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const open = Boolean(anchorEl);
+
+  const history= useNavigate()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

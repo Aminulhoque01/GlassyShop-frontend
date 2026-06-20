@@ -44,7 +44,7 @@ function App() {
       setIsLogin(true)
 
       fetchDataFromApi(`/api/user/user-details`).then((res)=>{
-         console.log(res)
+        //  console.log(res)
         setUserData(res)
       })
     }else{

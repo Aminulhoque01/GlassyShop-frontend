@@ -8,6 +8,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const postData = async (url, formData) => {
   try {
+    
     const response = await fetch(apiUrl + url, {
       method: "POST",
       headers: {

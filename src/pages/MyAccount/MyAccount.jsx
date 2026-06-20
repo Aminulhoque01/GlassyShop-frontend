@@ -1,8 +1,25 @@
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import AccountSidebar from "../../components/AccountSidebar/AccountSidebar";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../App";
+ 
 
 const MyAccount = () => {
+  
+    const context= useContext(MyContext);
+    const history = useNavigate();
+
+    useEffect(()=>{
+        const token = localStorage.getItem('accessToken');
+       if(token===null){
+        history('/')
+       }
+       
+    },[context?.isLogin])
+
+
   return (
     <section className="py-10 w-full">
       <div className="container flex gap-5">

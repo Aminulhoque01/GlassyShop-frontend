@@ -5,9 +5,30 @@ import { FaHeart } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
-
+import { useContext, useState } from "react";
+import { MyContext } from "../../App";
 
 const AccountSidebar = () => {
+  const [previews, setPreviews] = useState([]);
+  const [uploading, setUploading]= useState(false)
+  const context = useContext(MyContext);
+
+  let img_arr = [];
+  let uniqueArray = [];
+  let selectedImages = [];
+
+  const onChangeFile = async (e, apiEndPoint) => {
+   
+    try {
+      setPreviews([]);
+      const files = e.target.files;
+      setUploading(true)
+       
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="card bg-white shadow-md rounded-md sticky top-[10px]">
       <div className="w-full p-5 flex items-center justify-center flex-col">
@@ -16,6 +37,7 @@ const AccountSidebar = () => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjclDv0e9IVQdcKL5CgI8DITEgglEavaKqww&s"
             alt=""
             className="w-full h-full object-cover"
+           
           />
 
           <div
@@ -26,6 +48,8 @@ const AccountSidebar = () => {
             <input
               type="file"
               className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+               onChange={(e) => onChangeFile(e, "/api/user/user_avatar")}
+            name="avatar"
             />
           </div>
         </div>
