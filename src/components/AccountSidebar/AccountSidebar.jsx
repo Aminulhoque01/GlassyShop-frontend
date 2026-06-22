@@ -9,9 +9,11 @@ import { Button } from "@mui/material";
 import { useContext, useState } from "react";
 import { MyContext } from "../../App";
 import CircularProgress from "@mui/material/CircularProgress";
+import { editData } from "../../utils/api";
 
 const AccountSidebar = () => {
   const [previews, setPreviews] = useState([]);
+  
   const [uploading, setUploading] = useState(false);
   const context = useContext(MyContext);
 
@@ -38,7 +40,16 @@ const AccountSidebar = () => {
           const file= files[i];
           selectedImages.push(file);
           formdata.append(`avatar`, file)
-         console.log(file)
+
+          editData("/api/user/user_avatar", formdata).then((res)=>{
+            console.log(res)
+            setUploading(false)
+
+            let avatar=[];
+            avatar.push(res?.data?.avatar);
+            setPreviews(avatar)
+          })
+         
          
         }
       }
@@ -59,11 +70,22 @@ const AccountSidebar = () => {
           {uploading === true ? (
             <CircularProgress color="inherit" />
           ) : (
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjclDv0e9IVQdcKL5CgI8DITEgglEavaKqww&s"
-              alt=""
-              className="w-full h-full object-cover"
-            />
+            <>
+             {
+              previews?.length !==0 && previews?.map((img,index)=>{
+                  
+                return(
+                 
+                   <img
+                    src={img}
+                    key={index}
+                    alt=""
+                    className="w-full h-full object-cover"
+                />
+                )
+              })
+             }
+            </>
           )}
 
           <div

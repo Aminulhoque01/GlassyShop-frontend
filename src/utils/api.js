@@ -51,10 +51,15 @@ export const editData = async (url, updatedData) => {
   const params = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      "content-type": `application/json`,
+      'Content-Type':'multipart/form-data'
     },
   };
 
-  const { res } = await axios.put(apiUrl + url, updatedData, params);
-  return res;
+  var response;
+    await axios.put(apiUrl + url, updatedData, params).then((res)=>{
+    console.log(res);
+    response=res
+  });
+  return response;
+  
 };
