@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+ 
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoBagCheckSharp } from "react-icons/io5";
@@ -19,6 +19,8 @@ const AccountSidebar = () => {
   let uniqueArray = [];
   let selectedImages = [];
 
+  const formdata=new FormData();
+
   const onChangeFile = async (e, apiEndPoint) => {
     try {
       setPreviews([]);
@@ -36,7 +38,7 @@ const AccountSidebar = () => {
           const file= files[i];
           selectedImages.push(file);
           formdata.append(`avatar`, file)
-
+         console.log(file)
          
         }
       }
