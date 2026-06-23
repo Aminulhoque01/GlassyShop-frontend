@@ -19,17 +19,18 @@ const AccountSidebar = () => {
 
   useEffect(()=>{
     const userAvatar=[];
-    userAvatar.push(context?.userData?.data?.avatar);
-    setPreviews(userAvatar)
+   if(context?.userData?.data?.avatar !=="" && context?.userData?.data?.avatar !== undefined){
+     userAvatar.push(context?.userData?.data?.avatar);
+     setPreviews(userAvatar)
+   }
   },[context?.userData])
 
-  let img_arr = [];
-  let uniqueArray = [];
+   
   let selectedImages = [];
 
   const formdata=new FormData();
 
-  const onChangeFile = async (e, apiEndPoint) => {
+  const onChangeFile = async (e,) => {
     try {
       setPreviews([]);
       const files = e.target.files;
@@ -75,7 +76,8 @@ const AccountSidebar = () => {
         >
             {
             previews?.length === 0 &&
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs86eV39_U63X9x2vieNVSpUPSB5t1TIYh_eNIAoOoIA&s=10"    className="w-full h-full object-cover"/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs86eV39_U63X9x2vieNVSpUPSB5t1TIYh_eNIAoOoIA&s=10"    
+            className="w-full h-full object-cover"/>
           }
           {uploading === true ? (
             <CircularProgress color="inherit" />
