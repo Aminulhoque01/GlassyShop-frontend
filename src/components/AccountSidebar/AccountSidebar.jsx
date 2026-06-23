@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../App";
 import CircularProgress from "@mui/material/CircularProgress";
-import { editData } from "../../utils/api";
+import { uploadImage } from "../../utils/api";
 
 const AccountSidebar = () => {
   const [previews, setPreviews] = useState([]);
@@ -48,7 +48,7 @@ const AccountSidebar = () => {
           selectedImages.push(file);
           formdata.append(`avatar`, file)
 
-          editData("/api/user/user_avatar", formdata).then((res)=>{
+          uploadImage("/api/user/user_avatar", formdata).then((res)=>{
             console.log(res)
             setUploading(false)
 

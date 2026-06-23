@@ -1,15 +1,21 @@
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import AccountSidebar from "../../components/AccountSidebar/AccountSidebar";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
  
 
 const MyAccount = () => {
-  
+    
+    const [uploading, setUploading] = useState(false);
     const context= useContext(MyContext);
     const history = useNavigate();
+      const [formFields, setFormFields] = useState({
+        name: "",
+        email: "",
+        mobile:""
+      });
 
     useEffect(()=>{
         const token = localStorage.getItem('accessToken');

@@ -47,7 +47,7 @@ export const fetchDataFromApi = async (url) => {
   }
 };
 
-export const editData = async (url, updatedData) => {
+export const uploadImage = async (url, updatedData) => {
   const params = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
