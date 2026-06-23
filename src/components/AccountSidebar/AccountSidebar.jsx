@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../App";
 import CircularProgress from "@mui/material/CircularProgress";
 import { editData } from "../../utils/api";
@@ -16,6 +16,12 @@ const AccountSidebar = () => {
   
   const [uploading, setUploading] = useState(false);
   const context = useContext(MyContext);
+
+  useEffect(()=>{
+    const userAvatar=[];
+    userAvatar.push(context?.userData?.data?.avatar);
+    setPreviews(userAvatar)
+  },[context?.userData])
 
   let img_arr = [];
   let uniqueArray = [];
@@ -67,6 +73,10 @@ const AccountSidebar = () => {
           className="w-[110px] h-[110px] rounded-full overflow-hidden mb-4 relative group flex items-center 
         justify-center bg-gray-200"
         >
+            {
+            previews?.length === 0 &&
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs86eV39_U63X9x2vieNVSpUPSB5t1TIYh_eNIAoOoIA&s=10"    className="w-full h-full object-cover"/>
+          }
           {uploading === true ? (
             <CircularProgress color="inherit" />
           ) : (
@@ -88,6 +98,8 @@ const AccountSidebar = () => {
             </>
           )}
 
+        
+
           <div
             className="overly w-[100%] h-[100%] top-0 left-0 bg-[rgba(0,0,0,0.7)] absolute flex items-center 
                                  justify-center cursor-pointer opacity-0 transition-all group-hover:opacity-100"
@@ -103,8 +115,8 @@ const AccountSidebar = () => {
           </div>
         </div>
 
-        <h3 className="text-[16px] font-[600]">Jhon Doe</h3>
-        <h6 className="text-[13px] font-[400]">jhonDoe@gmail.com</h6>
+        <h3 className="text-[16px] font-[600]">{context?.userData?.data?.name}</h3>
+        <h6 className="text-[13px] font-[400]">{context?.userData?.data?.email}</h6>
       </div>
 
       <ul className="list-none pb-5 bg-[#f1f1f1] myAccountTabs">
