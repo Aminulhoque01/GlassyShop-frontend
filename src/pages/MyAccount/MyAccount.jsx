@@ -82,7 +82,12 @@ const MyAccount = () => {
       const res = await aditData(`/api/user/${userId}`, formFields, {
         withCredentials: true,
       }).then((res)=>{
-        toast.success(res?.mess)
+         
+         
+        if(res?.data?.message==="User Updated successfully"){
+          toast.success(res?.data?.message)
+           
+        }
       });
       console.log(res);
 
@@ -129,7 +134,7 @@ const MyAccount = () => {
                     className="w-full"
                     name="email"
                     value={formFields.email}
-                    disabled={isLoading === true ? true : false}
+                    disabled={true}
                     onChange={onChangeInput}
                   />
                 </div>
