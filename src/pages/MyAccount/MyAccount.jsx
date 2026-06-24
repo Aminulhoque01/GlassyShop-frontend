@@ -6,19 +6,28 @@ import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
 import toast from "react-hot-toast";
 import { aditData } from "../../utils/api";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 const MyAccount = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
   const [userId, setUserId] = useState("");
 
   const context = useContext(MyContext);
   const history = useNavigate();
 
+  
+
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",
     mobile: "",
+  });
+
+  const [changePassword, setChangePassword] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   useEffect(() => {
@@ -35,14 +44,12 @@ const MyAccount = () => {
     ) {
       setUserId(context?.userData?.data?._id);
       setFormFields({
-        name:context?.userData?.data?.name,
-        email:context?.userData?.data?.email,
-        mobile:context?.userData?.data?.mobile,
-      })
+        name: context?.userData?.data?.name,
+        email: context?.userData?.data?.email,
+        mobile: context?.userData?.data?.mobile,
+      });
     }
   }, [context?.userData]);
-
-  
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -53,7 +60,7 @@ const MyAccount = () => {
       };
     });
   };
-  
+
   const validValue = Object.values(formFields).every((el) => el);
 
   const handelSubmit = async (e) => {
@@ -81,17 +88,12 @@ const MyAccount = () => {
 
       const res = await aditData(`/api/user/${userId}`, formFields, {
         withCredentials: true,
-      }).then((res)=>{
-         
-         
-        if(res?.data?.message==="User Updated successfully"){
-          toast.success(res?.data?.message)
-           
+      }).then((res) => {
+        if (res?.data?.message === "User Updated successfully") {
+          toast.success(res?.data?.message);
         }
       });
       console.log(res);
-
-     
     } catch (error) {
       toast.error(error?.message || "Something went wrong");
     } finally {
@@ -107,8 +109,11 @@ const MyAccount = () => {
         </div>
 
         <div className="col2 w-[50%]">
-          <div className="card bg-white p-5 shadow-md rounded-md">
-            <h2 className="pb-3">My Profile</h2>
+          <div className="card bg-white p-5 shadow-md rounded-md mb-5">
+            <div className="flex items-center pb-0">
+              <h2 className="pb-0">My Profile</h2>
+              <Button className="!ml-auto">change password</Button>
+            </div>
             <hr />
 
             <form action="" className="mt-5" onSubmit={handelSubmit}>
@@ -169,8 +174,76 @@ const MyAccount = () => {
                     "save"
                   )}
                 </Button>
-                <Button className="btn-org btn-border   w-[100px]">
-                  Cancel
+              </div>
+            </form>
+          </div>
+
+          <div className="card bg-white p-5 shadow-md rounded-md">
+            <div className="flex items-center pb-0">
+              <h2 className="pb-0">change password</h2>
+              <hr />
+
+            
+
+            </div>
+
+              <form action="" className="mt-5" onSubmit="">
+              <div className="flex items-center gap-5">
+                <div className="w-[50%] ">
+                  <TextField
+                    label="Old Password"
+                    variant="outlined"
+                    size="small"
+                    className="w-full"
+                    name="oldPassword"
+                    value={changePassword.oldPassword}
+                    disabled={isLoading2 === true ? true : false}
+                    onChange={onChangeInput}
+                  />
+                </div>
+                <div className="w-[50%] ">
+                  <TextField
+                    type="new password"
+                    label="New Password"
+                    variant="outlined"
+                    size="small"
+                    className="w-full"
+                    name="newPassword"
+                    value={changePassword.newPassword}
+                    disabled={isLoading2 === true ? true : false}
+                    onChange={onChangeInput}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-5 mt-5">
+                <div className="w-[50%] ">
+                  <TextField
+                    label="Confirm Password"
+                    variant="outlined"
+                    size="small"
+                    className="w-full"
+                    name="confirmPassword"
+                    value={changePassword.confirmPassword}
+                    disabled={isLoading === true ? true : false}
+                    onChange={onChangeInput}
+                  />
+                </div>
+              </div>
+
+              <br />
+
+              <div className="flex items-center gap-4">
+                <Button
+                  type="submit"
+                  disabled={!validValue}
+                  className="btn-org  w-[300px]"
+                >
+                  {isLoading === true ? (
+                    <CircularProgress color="inherit" />
+                  ) : (
+                    "change password"
+                  )}
                 </Button>
               </div>
             </form>
