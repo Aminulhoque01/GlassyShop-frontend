@@ -47,6 +47,15 @@ function App() {
       fetchDataFromApi(`/api/user/user-details`).then((res)=>{
         //  console.log(res)
         setUserData(res)
+
+        if(res?.response?.data?.error === true){
+          if(res?.response?.data?.message==="You have not login"){
+            localStorage.removeItem("accessToken")
+            localStorage.removeItem("refreshToken")
+
+           setIsLogin(false)
+          }
+        }
       })
     }else{
       setIsLogin(false)

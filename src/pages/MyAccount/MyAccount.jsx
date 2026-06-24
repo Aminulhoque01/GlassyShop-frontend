@@ -34,8 +34,15 @@ const MyAccount = () => {
       context?.userData?.data?._id !== undefined
     ) {
       setUserId(context?.userData?.data?._id);
+      setFormFields({
+        name:context?.userData?.data?.name,
+        email:context?.userData?.data?.email,
+        mobile:context?.userData?.data?.mobile,
+      })
     }
   }, [context?.userData]);
+
+  
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -74,26 +81,12 @@ const MyAccount = () => {
 
       const res = await aditData(`/api/user/${userId}`, formFields, {
         withCredentials: true,
+      }).then((res)=>{
+        toast.success(res?.mess)
       });
       console.log(res);
 
-      if (res?.success) {
-        toast.success(res?.message || "login successful");
-
-        localStorage.setItem("accessToken", res?.data?.accessToken);
-        localStorage.setItem("refreshToken", res?.data?.refreshToken);
-
-        setFormFields({
-          email: "",
-          password: "",
-        });
-
-        context.setIsLogin(true);
-
-        history("/");
-      } else {
-        toast.error(res?.message || "login failed");
-      }
+     
     } catch (error) {
       toast.error(error?.message || "Something went wrong");
     } finally {
@@ -135,7 +128,7 @@ const MyAccount = () => {
                     size="small"
                     className="w-full"
                     name="email"
-                    value={formFields.Email}
+                    value={formFields.email}
                     disabled={isLoading === true ? true : false}
                     onChange={onChangeInput}
                   />
