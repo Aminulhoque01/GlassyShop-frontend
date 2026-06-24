@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
 import toast from "react-hot-toast";
-import { aditData } from "../../utils/api";
+import { aditData, postData } from "../../utils/api";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const MyAccount = () => {
@@ -25,6 +25,7 @@ const MyAccount = () => {
   });
 
   const [changePassword, setChangePassword] = useState({
+    email:context?.userData?.data?.email,
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -48,6 +49,8 @@ const MyAccount = () => {
         email: context?.userData?.data?.email,
         mobile: context?.userData?.data?.mobile,
       });
+
+
     }
   }, [context?.userData]);
 
@@ -59,9 +62,20 @@ const MyAccount = () => {
         [name]: value,
       };
     });
+
+    setChangePassword(() => {
+      return {
+        ...changePassword,
+        [name]: value,
+      };
+    });
+
+    
   };
 
+ 
   const validValue = Object.values(formFields).every((el) => el);
+ 
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -90,6 +104,50 @@ const MyAccount = () => {
         withCredentials: true,
       }).then((res) => {
         if (res?.data?.message === "User Updated successfully") {
+          toast.success(res?.data?.message);
+        }
+      });
+      console.log(res);
+    } catch (error) {
+      toast.error(error?.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
+  const handelSubmitChangePassword = async (e) => {
+    e.preventDefault();
+
+    try {
+      setIsLoading2(true);
+
+      if (changePassword.oldPassword === "") {
+        context.openAlertBox("error", "Please enter oldPassword");
+        setIsLoading2(false);
+        return;
+      }
+
+      if (changePassword.newPassword === "") {
+        context.openAlertBox("error", "Please enter newPassword");
+        setIsLoading2(false);
+        return;
+      }
+      if (changePassword.confirmPassword === "") {
+        context.openAlertBox("error", "Please enter confirmPassword");
+        setIsLoading2(false);
+        return;
+      }
+
+      if(changePassword.newPassword !== changePassword.confirmPassword){
+         context.openAlertBox("error", "newPassword and confirmPassword not match");
+      }
+
+      const res = await postData(`/api/user/reset-password`, changePassword, {
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res)
+        if (res?.data?.message === "password updated successfully") {
           toast.success(res?.data?.message);
         }
       });
@@ -187,7 +245,7 @@ const MyAccount = () => {
 
             </div>
 
-              <form action="" className="mt-5" onSubmit="">
+              <form action="" className="mt-5" onSubmit={handelSubmitChangePassword}>
               <div className="flex items-center gap-5">
                 <div className="w-[50%] ">
                   <TextField
@@ -239,7 +297,7 @@ const MyAccount = () => {
                   disabled={!validValue}
                   className="btn-org  w-[300px]"
                 >
-                  {isLoading === true ? (
+                  {isLoading2 === true ? (
                     <CircularProgress color="inherit" />
                   ) : (
                     "change password"

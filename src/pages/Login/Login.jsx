@@ -149,7 +149,7 @@ const Login = () => {
                   onChange={onChangeInput}
                 />
                 <Button
-                  type="submit"
+                  type="button"
                   onClick={() => setIsShowPassword(!isShowPassword)}
                   className="!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px]"
                 >
