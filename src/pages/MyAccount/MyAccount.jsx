@@ -151,6 +151,7 @@ const MyAccount = () => {
         withCredentials: true,
       }).then((res) => {
         console.log(res);
+         toast.success(res?.message)
         if(res?.error !== true){
           setIsLoading2(false)
           context.openAlertBox("success", res?.message)
@@ -167,7 +168,7 @@ const MyAccount = () => {
       setIsLoading(false);
     }
   };
-
+  
   return (
     <section className="py-10 w-full">
       <div className="container flex gap-5">

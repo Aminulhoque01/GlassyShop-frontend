@@ -20,6 +20,7 @@ import { IoBagCheckSharp } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import Navigation from "./Navigation";
 import { fetchDataFromApi } from "../../utils/api";
+import logo from "../../assets/logo/glassy.jpg"
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -103,7 +104,7 @@ const Header = () => {
             <div className="w-full lg:w-[18%] flex justify-center lg:justify-start">
               <Link to="/">
                 <img
-                  src="/src/assets/logo/glassy.jpg"
+                  src={logo}
                   alt="logo"
                   className="w-[120px] sm:w-[140px] lg:w-[170px] object-contain"
                 />
