@@ -126,7 +126,7 @@ const AccountSidebar = () => {
         <li className="w-full ">
           <NavLink to="/my-account" exact={true} activeClassName="isActive">
             <Button className="w-full !text-left  !px-5 !justify-start rounded-none flex items-center gap-3 !capitalize !text-[rgba(0,0,0,0.7)]">
-              <LuMapPinCheck  className="text-[#000] text-[17px]" /> My profile
+              <FaRegUserCircle  className="text-[#000] text-[17px]" /> My profile
             </Button>
           </NavLink>
         </li>
@@ -135,7 +135,7 @@ const AccountSidebar = () => {
          <li className="w-full ">
           <NavLink to="/address" exact={true} activeClassName="isActive">
             <Button className="w-full !text-left  !px-5 !justify-start rounded-none flex items-center gap-3 !capitalize !text-[rgba(0,0,0,0.7)]">
-              <FaRegUserCircle className="text-[#000] text-[17px]" /> Address
+              < LuMapPinCheck className="text-[#000] text-[17px]" /> Address
             </Button>
           </NavLink>
         </li>
