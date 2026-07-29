@@ -8,6 +8,9 @@ import toast from "react-hot-toast";
 import { aditData, postData } from "../../utils/api";
 import CircularProgress from "@mui/material/CircularProgress";
 import {Collapse} from "react-collapse"
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+
 
 const MyAccount = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +20,7 @@ const MyAccount = () => {
 
   const context = useContext(MyContext);
   const history = useNavigate();
-
+  const [phone, setPhone] = useState("");
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",
@@ -225,6 +228,20 @@ const MyAccount = () => {
                     disabled={isLoading === true ? true : false}
                     onChange={onChangeInput}
                   />
+                  <PhoneInput
+                defaultCountry="bd"
+                value={phone}
+                disabled={isLoading === true ? true : false}
+                onChange={(phone) => {
+                  setPhone(phone);
+                  setFormFields({
+                    mobile: phone,
+                  });
+                }}
+                  value={formFields.mobile}
+                    disabled={isLoading === true ? true : false}
+                    onChange={onChangeInput}
+              />
                 </div>
               </div>
 
