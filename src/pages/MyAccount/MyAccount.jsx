@@ -52,6 +52,8 @@ const MyAccount = () => {
         email: context?.userData?.data?.email,
         mobile: context?.userData?.data?.mobile,
       });
+      const ph=`${context?.userData?.mobile}`
+      setPhone(ph)
 
       setChangePassword({
          email: context?.userData?.data?.email,
@@ -218,29 +220,18 @@ const MyAccount = () => {
 
               <div className="flex items-center gap-5 mt-5">
                 <div className="w-[50%] ">
-                  <TextField
-                    label="phone number"
-                    variant="outlined"
-                    size="small"
-                    className="w-full"
-                    name="mobile"
-                    value={formFields.mobile}
-                    disabled={isLoading === true ? true : false}
-                    onChange={onChangeInput}
-                  />
+                  
                   <PhoneInput
-                defaultCountry="bd"
-                value={phone}
-                disabled={isLoading === true ? true : false}
-                onChange={(phone) => {
-                  setPhone(phone);
-                  setFormFields({
-                    mobile: phone,
-                  });
-                }}
-                  value={formFields.mobile}
+                    defaultCountry="bd"
+                    value={phone}
                     disabled={isLoading === true ? true : false}
-                    onChange={onChangeInput}
+                    onChange={(phone) => {
+                      setPhone(phone);
+                      setFormFields({
+                        mobile: phone,
+                      });
+                    }}
+                   
               />
                 </div>
               </div>
