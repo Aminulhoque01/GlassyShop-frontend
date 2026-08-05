@@ -1,19 +1,31 @@
-import { Button, CircularProgress, Radio, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { useState } from "react";
 import AccountSidebar from "../../components/AccountSidebar/AccountSidebar";
-import {  useState } from "react";
-import { MyContext } from "../../App";
- 
 import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
- 
- 
-import Dialog from '@mui/material/Dialog';
- 
-import DialogTitle from '@mui/material/DialogTitle'
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const Address = () => {
- 
+  const [isLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [phone, setPhone] = useState("");
+
+  const [formFields, setFormFields] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
+    country: "",
+    status: true,
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,98 +35,152 @@ const Address = () => {
     setOpen(false);
   };
 
- 
+  const handleInputChange = (e) => {
+    setFormFields((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-   
- 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
- 
- 
- 
+    console.log({
+      ...formFields,
+      mobile: phone,
+    });
 
- 
-
- 
-
-
- 
+    handleClose();
+  };
 
   return (
-    <div>
-      <section className="py-10 w-full">
+    <>
+      <section className="py-10">
         <div className="container flex gap-5">
-          <div className="col1 w-[20%]">
+          <div className="w-[25%]">
             <AccountSidebar />
           </div>
 
-          <div className="col2 w-[50%]">
-            <div className="card bg-white p-5 shadow-md rounded-md mb-5">
-              <div className="flex items-center pb-0">
-                <h2 className="pb-0">Address</h2>
+          <div className="w-[75%]">
+            <div className="card bg-white p-5 shadow-md rounded-md">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold">Address</h2>
               </div>
-              <hr />
 
-              <form action="" className="form mt-8" onSubmit="">
-             
-                 
+              <hr className="my-4" />
 
-                <br />
-
-                <div
-                  className="flex items-center justify-center p-5 border border-dashed border-[rgba(0,0,0,0.2) 
-              bg-[#f1faff]] cursor-pointer hover:bg-[#e7f3f9]"
-                >
-                  <Button
-                    className="btn-blue   !text-black "
-                    onClick={handleClickOpen
-                    }
-                  >
-                    Add address
-                  </Button>
-                </div>
-
-                {/* <div className="flex gap-2 flex-col mt-4">
-                  {adAddress?.data?.length > 0 &&
-                    adAddress.data.map((address, index) => (
-                      <label
-                        key={index}
-                        className="addressBox border border-dashed border-[rgba(0,0,0,0.2) 
-              bg-[#f1faff]] p-3 rounded-md bg-[#f1f1f1] cursor-pointer w-full flex  items-center justify-center"
-                      >
-                        <Radio
-                          name="address"
-                          checked={selectedValue === address?._id}
-                          value={address?._id}
-                          onChange={handleChange}
-                        />
-                        <span className="text-[12px]">
-                          {address?.address_line1 +
-                            " " +
-                            address?.city +
-                            " " +
-                            address?.country +
-                            " " +
-                            address?.pinCode +
-                            " " +
-                            address?.state}
-                        </span>
-                      </label>
-                    ))}
-                </div> */}
-
-                
-              </form>
+              <div
+                className="flex items-center justify-center p-5 border border-dashed border-gray-300 bg-[#f1faff] cursor-pointer hover:bg-[#e7f3f9]"
+              >
+                <Button variant="contained" onClick={handleClickOpen}>
+                  Add Address
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        <DialogTitle>Add Address</DialogTitle>
 
-      <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
-       
-    </Dialog>
-    </div>
+        <form onSubmit={handleSubmit} className="p-5">
+          <div className="mb-3">
+            <TextField
+              fullWidth
+              size="small"
+              label="Address Line"
+              name="address"
+              value={formFields.address}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="flex gap-3 mb-3">
+            <TextField
+              fullWidth
+              size="small"
+              label="City"
+              name="city"
+              value={formFields.city}
+              onChange={handleInputChange}
+            />
+
+            <TextField
+              fullWidth
+              size="small"
+              label="State"
+              name="state"
+              value={formFields.state}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="flex gap-3 mb-3">
+            <TextField
+              fullWidth
+              size="small"
+              label="Pincode"
+              name="pincode"
+              value={formFields.pincode}
+              onChange={handleInputChange}
+            />
+
+            <TextField
+              fullWidth
+              size="small"
+              label="Country"
+              name="country"
+              value={formFields.country}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="flex gap-3 mb-3">
+            <div className="w-full">
+              <PhoneInput
+                defaultCountry="bd"
+                value={phone}
+                disabled={isLoading}
+                onChange={(value) => {
+                  setPhone(value);
+
+                  setFormFields((prev) => ({
+                    ...prev,
+                    mobile: value,
+                  }));
+                }}
+              />
+            </div>
+
+            <FormControl fullWidth size="small">
+              <Select
+                value={formFields.status}
+                onChange={(e) =>
+                  setFormFields((prev) => ({
+                    ...prev,
+                    status: e.target.value,
+                  }))
+                }
+              >
+                <MenuItem value={true}>Published</MenuItem>
+                <MenuItem value={false}>Unpublished</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <div className="flex justify-end gap-3 mt-5">
+            <Button onClick={handleClose} color="inherit">
+              Cancel
+            </Button>
+
+            <Button type="submit" variant="contained">
+              Save Address
+            </Button>
+          </div>
+        </form>
+      </Dialog>
+    </>
   );
 };
 
