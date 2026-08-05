@@ -72,7 +72,7 @@ const Address = () => {
               <div
                 className="flex items-center justify-center p-5 border border-dashed border-gray-300 bg-[#f1faff] cursor-pointer hover:bg-[#e7f3f9]"
               >
-                <Button variant="contained" onClick={handleClickOpen}>
+                <Button className="!bg-[#ff5252]" variant="contained" onClick={handleClickOpen}>
                   Add Address
                 </Button>
               </div>
@@ -174,7 +174,7 @@ const Address = () => {
               Cancel
             </Button>
 
-            <Button type="submit" variant="contained">
+            <Button className="!bg-[#ff5252]" type="submit" variant="contained">
               Save Address
             </Button>
           </div>
