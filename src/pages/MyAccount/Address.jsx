@@ -15,17 +15,18 @@ const Address = () => {
   const [open, setOpen] = useState(false);
   const [phone, setPhone] = useState("");
 
-  const [formFields, setFormFields] = useState({
-    name: "",
-    email: "",
-    mobile: "",
-    address: "",
+   const [formFields, setFormFields] = useState({
+    address_line1: "",
     city: "",
     state: "",
-    pincode: "",
+    pinCode: "",
     country: "",
-    status: true,
+    mobile: "",
+    status: "",
+    userId: "",
+    selected:false
   });
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -89,9 +90,9 @@ const Address = () => {
             <TextField
               fullWidth
               size="small"
-              label="Address Line"
-              name="address"
-              value={formFields.address}
+              label="address_line1"
+              name="address_line1"
+              value={formFields.address_line1}
               onChange={handleInputChange}
             />
           </div>
@@ -120,9 +121,9 @@ const Address = () => {
             <TextField
               fullWidth
               size="small"
-              label="Pincode"
-              name="pincode"
-              value={formFields.pincode}
+              label="pinCode"
+              name="pinCode"
+              value={formFields.pinCode}
               onChange={handleInputChange}
             />
 
