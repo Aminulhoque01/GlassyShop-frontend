@@ -80,3 +80,21 @@ export const aditData = async (url, updatedData) => {
   return response;
   
 };
+
+
+export const deleteData = async (url) => {
+  try {
+    const response = await fetch(apiUrl + url, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

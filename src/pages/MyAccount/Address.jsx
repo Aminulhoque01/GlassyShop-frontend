@@ -11,7 +11,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import toast from "react-hot-toast";
 import { MyContext } from "../../App";
-import { aditData, fetchDataFromApi, postData } from "../../utils/api";
+import { aditData, fetchDataFromApi, postData,deleteData } from "../../utils/api";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 const Address = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,9 +66,7 @@ const Address = () => {
     if (context?.userData?.data?._id) {
       const mobile = String(context?.userData?.data?.mobile || "");
 
-     
       fetchAddress();
-  
 
       setPhone(mobile);
 
@@ -144,12 +145,31 @@ const Address = () => {
   const fetchAddress = async () => {
     try {
       const res = await fetchDataFromApi(
-        `/api/address/get-address?userId=${context?.userData?.data?._id}`
+        `/api/address/get-address?userId=${context?.userData?.data?._id}`,
       );
 
       context.setAdAddress(res);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleDeleteAddress = async (id) => {
+    try {
+       
+       
+      const res = await deleteData(`/api/address/${id}`);
+      if (res?.success) {
+        toast.success(res.message || "Address deleted successfully");
+
+        const data = await fetchDataFromApi(
+          `/api/address/get-address?userId=${context?.userData?.data?._id}`,
+        );
+
+        context.setAdAddress(data);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Failed to delete address");
     }
   };
 
@@ -183,51 +203,38 @@ const Address = () => {
             <br />
 
             <div className="mt-5 space-y-3">
-              {context?.adAddress?.data?.length > 0 ? (
-                context.adAddress.data.map((address) => (
-                  <div
-                    key={address._id}
-                    className="border rounded-md p-4 shadow-sm bg-gray-50"
-                  >
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <p>
-                          <strong>Address:</strong> {address.address_line1}
-                        </p>
-
-                        <p>
-                          {address.city}, {address.state}
-                        </p>
-
-                        <p>
-                          {address.country} - {address.pinCode}
-                        </p>
-
-                        <p>{address.mobile}</p>
-
-                        <p>
-                          Status :
-                          <span
-                            className={`ml-2 ${
-                              address.status ? "text-green-600" : "text-red-500"
-                            }`}
-                          >
-                            {address.status ? "Published" : "Unpublished"}
-                          </span>
-                        </p>
-                      </div>
-
-                      <Radio
-                        checked={selectedValue === address._id}
-                        value={address._id}
-                        onChange={handleChange}
-                      />
-                    </div>
+              {context?.adAddress?.data?.map((address) => (
+                <div
+                  key={address._id}
+                  className="border rounded-md p-4 flex justify-between items-center"
+                >
+                  <div>
+                    <p>{address.address_line1}</p>
+                    <p>
+                      {address.city}, {address.state}
+                    </p>
+                    <p>
+                      {address.country} - {address.pinCode}
+                    </p>
+                    <p>{address.mobile}</p>
                   </div>
-                ))
-              ) : (
-                <p className="text-center text-gray-500">No Address Found</p>
-              )}
+
+                  <div className="flex items-center gap-2">
+                    <Radio
+                      checked={selectedValue === address._id}
+                      value={address._id}
+                      onChange={handleChange}
+                    />
+
+                    <IconButton
+                      color="error"
+                      onClick={() => handleDeleteAddress(address._id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
