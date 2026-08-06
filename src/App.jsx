@@ -34,7 +34,7 @@ function App() {
   const [openCartPanel, setOpenCartPanel] = useState(false);
   const[isLogin, setIsLogin]=useState(false)
   const[userData, setUserData]=useState(false);
- 
+     const [adAddress, setAdAddress] = useState("");
 
   const apiUrl= import.meta.env.VITE_API_URL;
 
@@ -93,7 +93,9 @@ function App() {
     openAlertBox,
     isLogin,
     setIsLogin,
-    userData
+    userData,
+    adAddress, 
+    setAdAddress
     
   };
 
