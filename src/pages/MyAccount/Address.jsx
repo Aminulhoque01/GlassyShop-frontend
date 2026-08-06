@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Radio, TextField } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import AccountSidebar from "../../components/AccountSidebar/AccountSidebar";
 import { PhoneInput } from "react-international-phone";
@@ -11,16 +11,18 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import toast from "react-hot-toast";
 import { MyContext } from "../../App";
-import { fetchDataFromApi, postData } from "../../utils/api";
+import { aditData, fetchDataFromApi, postData } from "../../utils/api";
 
 const Address = () => {
-   const [isLoading, setIsLoading] = useState(false);
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const [open, setOpen] = useState(false);
   const [phone, setPhone] = useState("");
-   const context = useContext(MyContext);
-   
-   const [formFields, setFormFields] = useState({
+  const context = useContext(MyContext);
+
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const [formFields, setFormFields] = useState({
     address_line1: "",
     city: "",
     state: "",
@@ -29,9 +31,8 @@ const Address = () => {
     mobile: "",
     status: "",
     userId: "",
-    selected:false
+    selected: false,
   });
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,10 +48,24 @@ const Address = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+
+    if (event.target.checked === true) {
+      aditData(`/api/address/${event.target.value}`, { selected: true });
+    } else {
+      aditData(`/api/address/${event.target.value}`, { selected: false });
+    }
+  };
+
   useEffect(() => {
     if (context?.userData?.data?._id) {
       const mobile = String(context?.userData?.data?.mobile || "");
+
+     
+      fetchAddress();
+  
 
       setPhone(mobile);
 
@@ -61,8 +76,6 @@ const Address = () => {
       }));
     }
   }, [context?.userData]);
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,8 +122,6 @@ const Address = () => {
 
         setPhone("");
 
-       
-
         fetchDataFromApi(
           `/api/address/get-address?userId=${context?.userData?.data?._id}`,
         ).then((res) => {
@@ -130,6 +141,18 @@ const Address = () => {
     }
   };
 
+  const fetchAddress = async () => {
+    try {
+      const res = await fetchDataFromApi(
+        `/api/address/get-address?userId=${context?.userData?.data?._id}`
+      );
+
+      context.setAdAddress(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <section className="py-10">
@@ -146,13 +169,65 @@ const Address = () => {
 
               <hr className="my-4" />
 
-              <div
-                className="flex items-center justify-center p-5 border border-dashed border-gray-300 bg-[#f1faff] cursor-pointer hover:bg-[#e7f3f9]"
-              >
-                <Button className="!bg-[#ff5252]" variant="contained" onClick={handleClickOpen}>
+              <div className="flex items-center justify-center p-5 border border-dashed border-gray-300 bg-[#f1faff] cursor-pointer hover:bg-[#e7f3f9]">
+                <Button
+                  className="!bg-[#ff5252]"
+                  variant="contained"
+                  onClick={handleClickOpen}
+                >
                   Add Address
                 </Button>
               </div>
+            </div>
+            <hr />
+            <br />
+
+            <div className="mt-5 space-y-3">
+              {context?.adAddress?.data?.length > 0 ? (
+                context.adAddress.data.map((address) => (
+                  <div
+                    key={address._id}
+                    className="border rounded-md p-4 shadow-sm bg-gray-50"
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p>
+                          <strong>Address:</strong> {address.address_line1}
+                        </p>
+
+                        <p>
+                          {address.city}, {address.state}
+                        </p>
+
+                        <p>
+                          {address.country} - {address.pinCode}
+                        </p>
+
+                        <p>{address.mobile}</p>
+
+                        <p>
+                          Status :
+                          <span
+                            className={`ml-2 ${
+                              address.status ? "text-green-600" : "text-red-500"
+                            }`}
+                          >
+                            {address.status ? "Published" : "Unpublished"}
+                          </span>
+                        </p>
+                      </div>
+
+                      <Radio
+                        checked={selectedValue === address._id}
+                        value={address._id}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-center text-gray-500">No Address Found</p>
+              )}
             </div>
           </div>
         </div>
@@ -251,7 +326,7 @@ const Address = () => {
               Cancel
             </Button>
 
-            <Button  type="submit" className="!bg-[#ff5252]" variant="contained">
+            <Button type="submit" className="!bg-[#ff5252]" variant="contained">
               Save Address
             </Button>
           </div>
